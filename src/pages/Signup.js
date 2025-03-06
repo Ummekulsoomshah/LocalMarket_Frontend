@@ -51,7 +51,7 @@ const Signup = () => {
                 const token = response.data.token
                 localStorage.setItem('token', token)
                 console.log(response.data.message)
-                navigate('/')
+                navigate('/CatagoryAd')
             }
 
         } catch (error) {

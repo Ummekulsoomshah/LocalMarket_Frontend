@@ -127,7 +127,8 @@ const Login = () => {
                         </div>
                     </div>
                 </section>
-            ) : (<section class="bg-gray-50 dark:bg-gray-900">
+            ) : (
+            <section class="bg-gray-50 dark:bg-gray-900">
                 <div class="flex flex-col items-center justify-center mx-auto md:h-screen lg:py-0">
 
                     <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
@@ -169,7 +170,8 @@ const Login = () => {
                         </div>
                     </div>
                 </div>
-            </section>)}
+            </section>
+        )}
         </div>
     )
 }
