@@ -3,13 +3,13 @@ import PageHeading from "../components/PageHeading";
 
 const Contact = () => {
   return (
-    <div className="px-4 py-8">
+    <div className="px-4 py-8 ">
       <PageHeading home="Home" pagename="Contact" />
-      <div className="mx-auto max-w-screen-md bg-white rounded-lg shadow-lg p-6">
-        <h2 className="mb-4 text-4xl font-extrabold text-center text-gray-900">
+      <div className="mx-auto max-w-screen-md  rounded-lg shadow-lg p-6 bg-gray-300">
+        <h2 className="mb-4 text-3xl font-bold text-center text-gray-700">
           Contact Us
         </h2>
-        <p className="mb-6 text-lg text-center text-gray-600">
+        <p className="mb-6 text-lg text-center text-gray-600 font-bold">
           Got an issue? Want to send feedback? Need any additional details? Let us know.
         </p>
         <form action="#" className="space-y-4">

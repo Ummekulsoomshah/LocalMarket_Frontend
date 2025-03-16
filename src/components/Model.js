@@ -96,7 +96,8 @@ export const Model = ({ isModalOpen, data, handleClose }) => {
       <div>
         {isModalOpen && (
           <div className="modal-overlay">
-            <div className="modal-content w-2/3 relative z-40">
+            <div className="modal-content w-[800px] h-[460px] relative z-40 bg-white rounded-lg shadow-lg p-3 mt-16">
+
               <span
                 onClick={handleClose}
                 className="absolute top-0 right-0 p-4 cursor-pointer"
@@ -105,13 +106,13 @@ export const Model = ({ isModalOpen, data, handleClose }) => {
               </span>
               <div className="flex">
                 <div className="relative">
-                  <div className="modal-poster">
-                    <img
-                      src={data.img}
-                      alt={data.title}
-                      className="max-w-none"
-                    />
-                  </div>
+                <div className="modal-poster w-[300px] h-[300px] flex items-center justify-center overflow-hidden">
+                <img
+                  src={data.img}
+                  alt={data.title}
+                 className="w-full h-full object-cover rounded-lg"
+                />
+                </div>
                   <div className="tag absolute top-0 right-0 z-10">
                     <p className="bg-green-600 m-2 rounded-full w-12 h-12 grid place-items-center text-white">
                       {data.tag}

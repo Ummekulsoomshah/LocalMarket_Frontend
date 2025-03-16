@@ -62,7 +62,7 @@ const Sidebar = ({ isSidebarOpen, closeSidebar }) => {
                     </div>
                   </div>
                 ))}
-                <div className="bg-red-700 p-6 w-full text-white">
+                <div className="bg-gray-700 p-6 w-full text-white">
                   <h2>
                     Sub Total: $<span>{totalAmount}</span>
                   </h2>

@@ -1,98 +1,259 @@
 
-import React, { useState } from 'react';
-import '../index.css'; // Import the CSS file where the styles are defined
-import { chatbot } from "../data/Data"; // Import the chatbot data
+// import React, { useState } from "react";
+// import axios from "axios";
+// import { chatbot } from "../data/Data"; // Import local responses
+// import stringSimilarity from "string-similarity"; // Import fuzzy matching
+// import "../index.css"; // Import CSS
 
-// Normalization function: lowercase and remove special characters
-const normalize = (text) =>
-  text.toLowerCase().replace(/[^a-z0-9\s]/gi, "").split(/\s+/);
+// function Chatbot() {
+//     const [userMessage, setUserMessage] = useState("");
+//     const [chatHistory, setChatHistory] = useState([]);
+//     const [lastRequestTime, setLastRequestTime] = useState(0); // Store last API request time
+//     const [isRetrying, setIsRetrying] = useState(false); // Track retry state
 
-// Matching function to calculate the similarity score
-const calculateMatch = (inputWords, triggerWords) => {
-  const inputSet = new Set(inputWords);
-  const triggerSet = new Set(triggerWords);
-  const intersection = [...inputSet].filter(word => triggerSet.has(word));
-  return intersection.length / Math.max(triggerWords.length, 1); // Prevent division by zero
-};
+//     // Load API key from .env
+//     const API_KEY = process.env.REACT_APP_OPENAI_API_KEY;
 
-// Enhanced function to determine the best reply
-const getBestReply = (message) => {
-  const normalizedInput = normalize(message); // Normalize the user's input
+//     // Function to find the best match from local responses
+//     const findBestMatch = (input) => {
+//         const triggers = chatbot.map((item) => item.trigger.toLowerCase());
+//         const matches = stringSimilarity.findBestMatch(input.toLowerCase(), triggers);
 
-  let bestMatch = null;
-  let highestScore = 0;
+//         if (matches.bestMatch.rating > 0.7) {
+//             return chatbot[matches.bestMatchIndex].response;
+//         }
+//         return null;
+//     };
 
-  for (const item of chatbot) {
-    const normalizedTrigger = normalize(item.trigger); // Normalize the stored trigger
-    const matchScore = calculateMatch(normalizedInput, normalizedTrigger);
+//     const handleSendMessage = async (retrying = false) => {
+//         if (!userMessage.trim()) return;
 
-    if (matchScore > highestScore) {
-      bestMatch = item;
-      highestScore = matchScore;
-    }
-  }
+//         const now = Date.now();
+//         if (!retrying && now - lastRequestTime < 5000) {  // Prevent rapid API requests (5s cooldown)
+//             console.warn(" Too many requests! Please wait.");
+//             return;
+//         }
+//         setLastRequestTime(now);
 
-  // Set a threshold for relevant responses (e.g., 40%)
-  if (highestScore >= 0.4) {
-    return bestMatch.response;
-  }
+//         // Add user message to chat
+//         const newChatHistory = [...chatHistory, { role: "user", content: userMessage }];
+//         setChatHistory(newChatHistory);
 
-  // Default response if no relevant match is found
-  return "I'm sorry, I couldn't understand. Could you please provide more details?";
-};
+//         // Check for local response first
+//         const localResponse = findBestMatch(userMessage);
+//         if (localResponse) {
+//             setChatHistory([...newChatHistory, { role: "assistant", content: localResponse }]);
+//             setUserMessage("");
+//             return;
+//         }
+
+//         console.log("🔹 Sending request to OpenAI API...");
+
+//         try {
+//             const response = await axios.post(
+//                 "https://api.openai.com/v1/chat/completions",
+//                 {
+//                     model: "gpt-3.5-turbo",
+//                     messages: [{ role: "system", content: "You are a helpful chatbot." }, ...newChatHistory],
+//                     max_tokens: 200,
+//                 },
+//                 {
+//                     headers: {
+//                         Authorization: `Bearer ${API_KEY}`,
+//                         "Content-Type": "application/json",
+//                     },
+//                 }
+//             );
+
+//             const botMessage = response.data.choices?.[0]?.message?.content || "I'm not sure.";
+//             setChatHistory([...newChatHistory, { role: "assistant", content: botMessage }]);
+//         } catch (error) {
+//             console.error(" Chatbot API error:", error);
+
+//             if (error.response?.status === 429 && !isRetrying) {
+//                 console.warn(" Too many requests. Retrying in 5 seconds...");
+//                 setIsRetrying(true);
+//                 setTimeout(() => {
+//                     setIsRetrying(false);
+//                     handleSendMessage(true);
+//                 }, 5000);
+//             } else {
+//                 setChatHistory([...newChatHistory, { role: "assistant", content: "Sorry, I'm overloaded. Try again later." }]);
+//             }
+//         }
+
+//         setUserMessage(""); // Clear input field
+//     };
+
+//     return (
+//         <div className="chatbot-container">
+//             <div className="chatbot-header">Chatbot</div>
+
+//             <div className="chatbot-messages">
+//                 {chatHistory.map((msg, index) => (
+//                     <div key={index} className={msg.role === "user" ? "chatbot-message user" : "chatbot-message bot"}>
+//                         {msg.content}
+//                     </div>
+//                 ))}
+//             </div>
+
+//             <div className="chatbot-input-area">
+//                 <input
+//                     type="text"
+//                     value={userMessage}
+//                     onChange={(e) => setUserMessage(e.target.value)}
+//                     placeholder="Ask me a question"
+//                     className="chatbot-input"
+//                 />
+//                 <button onClick={() => handleSendMessage()} className="send-button">
+//                     Send
+//                 </button>
+//             </div>
+//         </div>
+//     );
+// }
+
+// export default Chatbot;
+
+
+
+
+import React, { useState } from "react";
+import axios from "axios";
+import { chatbot } from "../data/Data"; // Import local responses
+import stringSimilarity from "string-similarity"; // Import fuzzy matching
+import "../index.css"; // Import CSS
 
 function Chatbot() {
-  const [userMessage, setUserMessage] = useState('');
-  const [chatbotReply, setChatbotReply] = useState('');
+    const [userMessage, setUserMessage] = useState("");
+    const [chatHistory, setChatHistory] = useState([]);
+    const [lastRequestTime, setLastRequestTime] = useState(0); // Store last API request time
+    const [isRetrying, setIsRetrying] = useState(false); // Track retry state
+    const [isMinimized, setIsMinimized] = useState(false); // Track minimized state
+    const [isVisible, setIsVisible] = useState(true); // Track chatbot visibility
 
-  const handleInputChange = (e) => {
-    setUserMessage(e.target.value);
-  };
+    // Load API key from .env
+    const API_KEY = process.env.REACT_APP_OPENAI_API_KEY;
 
-  const handleSendMessage = () => {
-    if (!userMessage.trim()) return; // Skip empty input
+    // Function to find the best match from local responses
+    const findBestMatch = (input) => {
+        const triggers = chatbot.map((item) => item.trigger.toLowerCase());
+        const matches = stringSimilarity.findBestMatch(input.toLowerCase(), triggers);
 
-    // Get the chatbot's best reply
-    const botReply = getBestReply(userMessage);
+        if (matches.bestMatch.rating > 0.7) {
+            return chatbot[matches.bestMatchIndex].response;
+        }
+        return null;
+    };
 
-    // Update the chatbot's reply and clear the user input field
-    setChatbotReply(botReply);
-    setUserMessage('');
-  };
+    const handleSendMessage = async (retrying = false) => {
+        if (!userMessage.trim()) return;
 
-  return (
-    <div className="chatbot-container">
-      {/* Chatbot Header */}
-      <div className="chatbot-header">
-        Chatbot
-      </div>
+        const now = Date.now();
+        if (!retrying && now - lastRequestTime < 5000) {  // Prevent rapid API requests (5s cooldown)
+            console.warn(" Too many requests! Please wait.");
+            return;
+        }
+        setLastRequestTime(now);
 
-      {/* Chatbot Messages */}
-      <div className="chatbot-messages">
-        {chatbotReply && (
-          <div className="chatbot-message bot">
-            {chatbotReply}
-          </div>
-        )}
-      </div>
+        // Add user message to chat
+        const newChatHistory = [...chatHistory, { role: "user", content: userMessage }];
+        setChatHistory(newChatHistory);
 
-      {/* Chatbot Input Area */}
-      <div className="chatbot-input-area">
-        <input
-          type="text"
-          value={userMessage}
-          onChange={handleInputChange}
-          placeholder="Ask me a question"
-          className="chatbot-input"
-        />
-        <button onClick={handleSendMessage} className="send-button">
-          Send
-        </button>
-      </div>
-    </div>
-  );
+        // Check for local response first
+        const localResponse = findBestMatch(userMessage);
+        if (localResponse) {
+            setChatHistory([...newChatHistory, { role: "assistant", content: localResponse }]);
+            setUserMessage("");
+            return;
+        }
+
+        console.log("🔹 Sending request to OpenAI API...");
+
+        try {
+            const response = await axios.post(
+                "https://api.openai.com/v1/chat/completions",
+                {
+                    model: "gpt-3.5-turbo",
+                    messages: [{ role: "system", content: "You are a helpful chatbot." }, ...newChatHistory],
+                    max_tokens: 200,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${API_KEY}`,
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+
+            const botMessage = response.data.choices?.[0]?.message?.content || "I'm not sure.";
+            setChatHistory([...newChatHistory, { role: "assistant", content: botMessage }]);
+        } catch (error) {
+            console.error(" Chatbot API error:", error);
+
+            if (error.response?.status === 429 && !isRetrying) {
+                console.warn(" Too many requests. Retrying in 5 seconds...");
+                setIsRetrying(true);
+                setTimeout(() => {
+                    setIsRetrying(false);
+                    handleSendMessage(true);
+                }, 5000);
+            } else {
+                setChatHistory([...newChatHistory, { role: "assistant", content: "Sorry, I'm overloaded. Try again later." }]);
+            }
+        }
+
+        setUserMessage(""); // Clear input field
+    };
+
+    if (!isVisible) return null;
+
+    return (
+        <div className={`chatbot-container ${isMinimized ? "minimized" : ""}`}>
+            <div className="chatbot-controls" style={{ marginLeft: "150px", display: "flex", gap: "8px" }}>
+                    <button className="minimize-button" onClick={() => setIsMinimized(!isMinimized)}>
+                        {isMinimized ? "▲" : "▼"}
+                    </button>
+                    <button className="exit-button" onClick={() => setIsVisible(false)}>✖</button>
+                </div>
+            <div className="chatbot-header">
+                <span>Chatbot</span>
+                
+            </div>
+
+            {!isMinimized && (
+                <>
+                    <div className="chatbot-messages">
+                        {chatHistory.map((msg, index) => (
+                            <div key={index} className={msg.role === "user" ? "chatbot-message user" : "chatbot-message bot"}>
+                                {msg.content}
+                            </div>
+                        ))}
+                    </div>
+
+                    <div className="chatbot-input-area">
+                        <input
+                            type="text"
+                            value={userMessage}
+                            onChange={(e) => setUserMessage(e.target.value)}
+                            placeholder="Ask me a question"
+                            className="chatbot-input"
+                        />
+                        <button onClick={() => handleSendMessage()} className="send-button">
+                            Send
+                        </button>
+                    </div>
+                </>
+            )}
+        </div>
+    );
 }
 
 export default Chatbot;
+
+
+
+
+
 
 

@@ -110,7 +110,7 @@
 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { feateures } from "../data/Data";
+import { shop } from "../data/Data";
 import { BiCart, BiGitCompare, BiHeart, BiSearch } from "react-icons/bi";
 import { Model } from "../components/Model";
 import PageHeading from "../components/PageHeading";
@@ -128,7 +128,7 @@ const Shop = () => {
   };
 
   // Filter the products based on the search term (match category or title)
-  const filteredFeatures = feateures.filter((item) => {
+  const filteredFeatures = shop.filter((item) => {
     const searchLower = searchTerm.toLowerCase();
     return (
       item.category.toLowerCase().includes(searchLower) ||
@@ -228,7 +228,7 @@ const Shop = () => {
 
       <Model
         isModalOpen={isModalOpen !== null}
-        data={feateures.find((feature) => feature.id === isModalOpen)}
+        data={shop.find((feature) => feature.id === isModalOpen)}
         handleClose={handleClose}
       />
     </div>

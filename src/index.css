@@ -56,7 +56,6 @@ code {
   line-height: 66px;
 }
 .banner-items button,
-.bg-design-cover button,
 .addtocart button,
 .size-btn button,
 .mwa button:hover {
@@ -99,6 +98,7 @@ code {
   background-image: url(./../public/images/bg_testi.jpg);
   padding: 6rem 0;
   position: relative;
+  top: 20px;
 }
 .bg-image-overlay {
   position: absolute;
@@ -114,6 +114,8 @@ code {
   background-repeat: no-repeat;
   padding: 6rem 0;
   position: relative;
+  top: 30px;
+
 }
 
 /* Modal Overlay */
@@ -214,4 +216,10 @@ code {
 
 .chatbot-response p {
   margin: 0;
+}
+
+.chatbot-controls{
+  margin-left: 230px;
+  display: flex;
+  gap: 6px;
 }

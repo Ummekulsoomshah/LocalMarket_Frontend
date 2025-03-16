@@ -4,7 +4,7 @@ import React from "react";
 import Banner from "../components/Banner";
 import { Feature } from "../components/Feature";
 import { Review } from "../components/Review";
-import { BestSeller } from "../components/BestSeller";
+// import { BestSeller } from "../components/BestSeller";
 import { NewDesignCover } from "../components/NewDesignCover";
 import { Blog } from "../components/Blog";
 import Sidebar from "../components/Sidebar";
@@ -30,10 +30,10 @@ const Home = () => {
           <Review />
         </section>
 
-        {/* Best Seller Section */}
+        {/* Best Seller Section
         <section className="best-seller-section">
           <BestSeller />
-        </section>
+        </section> */}
 
         {/* New Design Section */}
         <section className="new-design-cover-section">
@@ -51,10 +51,13 @@ const Home = () => {
         <Sidebar />
       </section>
 
-      {/* Chatbot Section */}
-      <section className="chatbot-section">
-        <Chatbot />  {/* Add the Chatbot here */}
+      {/* Chatbot Section - Fixed on the right */}
+      <section
+        className="chatbot-section fixed bottom-10 right-5 z-50 bg-gray-800 shadow-lg rounded-lg p-3"
+      >
+        <Chatbot />
       </section>
+
     </div>
   );
 };
