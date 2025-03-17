@@ -13,7 +13,6 @@ import {
   Login,
   Signup,
 } from "./pages/index";
-import LoginSignupPage from "./components/loginSignup";
 import SellerDashboard from "./pages/SellerDashboard";
 import AddProducts from "./pages/AddProduct";
 import AddReview from "./pages/AddReview";
@@ -23,6 +22,7 @@ import Adminlogin from "./pages/Adminlogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdmincatagoryAdd from "./pages/AdmincatagoryAdd";
 import ItemaddPage from "./pages/ItemaddPage";
+import ProductDisplay from "./pages/ProductDisplay";
 
 
 function App() {
@@ -43,11 +43,12 @@ function App() {
           <Route path="/Signup" element={<Signup/>} />
           <Route path="/payment" element={<Payment />} /> {/* Payment Route */}
           <Route path="/*" element={<NotFoundPage />} />
-          <Route path='CatagoryAd' element={<CatagoryAd/>}/>
+          <Route path='/CatagoryAd' element={<CatagoryAd/>}/>
           <Route path="/adminlogin" element={<Adminlogin/>}/>
           <Route path="AdminDashboard" element={<AdminDashboard/>}/>
           <Route path="/catagAddadmin" element={<AdmincatagoryAdd/>}/>
           <Route path="/add-product/:catagory" element={<ItemaddPage/>}/>
+          <Route path="/ProductDisplay/:insertId" element={<ProductDisplay/>}/>
         </Routes>
         {/* <Footer /> */}
       </Router>
