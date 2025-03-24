@@ -9,7 +9,7 @@ const CatagoryAd = () => {
         try {
 
             const fetchCategory = async () => {
-                const response = await axios.get('http://localhost:3000/bussiness/categories')
+                const response = await axios.get('http://localhost:3000/categories')
                 if (response.status === 200) {
                     const data = response.data.categories[0]
                     console.log("data", data)
