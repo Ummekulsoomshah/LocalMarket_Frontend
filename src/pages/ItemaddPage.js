@@ -44,7 +44,7 @@ const ItemaddPage = () => {
 
     try {
       console.log(localStorage.getItem('token'))
-      const response = await axios.post('http://localhost:3000/bussiness/adproducts', formdata,
+      const response = await axios.post('http://localhost:3000/adproducts', formdata,
         {
           headers: {
             'Content-type': 'multipart/form-data',
@@ -70,7 +70,7 @@ const ItemaddPage = () => {
   useEffect(() => {
     const fetchCategoryFields = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/bussiness/getCatagorieFields/${catagory}`)
+        const response = await axios.get(`http://localhost:3000/getCatagorieFields/${catagory}`)
         if (response.status == 200) {
           const data = await response.data.fields
           setFields(data)

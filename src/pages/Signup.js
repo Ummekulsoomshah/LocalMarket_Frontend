@@ -4,19 +4,21 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 const Signup = () => {
     const [isbuyer, setIsbuyer] = useState(false);
-    const [name, setname] = useState('')
-    const [email, setemail] = useState('')
-    const [password, setpassword] = useState('')
-    const [bname, setbname] = useState('')
-    const [bemail, setbemail] = useState('')
-    const [bpassword, setbpassword] = useState('')
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        password: '',
+        bname: '',
+        bemail: '',
+        bpassword: ''
+    })
     const navigate = useNavigate()
     const usersubmitHandler = async (e) => {
         e.preventDefault()
         const userData = {
-            name,
-            email,
-            password
+            name: formData.name,
+            email: formData.email,
+            password: formData.password
         }
         try {
             const response = await axios.post('http://localhost:3000/user/signup', userData)
@@ -32,17 +34,15 @@ const Signup = () => {
 
         }
 
-        setname('')
-        setemail('')
-        setpassword('')
+        setFormData({ ...formData, name: '', email: '', password: '' })
 
     }
     const bussinesssubmitHandler = async (e) => {
         e.preventDefault()
         const bussinessData = {
-            bname,
-            bemail,
-            bpassword
+            name: formData.bname,
+            email: formData.bemail,
+            password: formData.bpassword
         }
         console.log(bussinessData)
         try {
@@ -59,9 +59,7 @@ const Signup = () => {
 
         }
 
-        setbemail('')
-        setbname('')
-        setbpassword('')
+        setFormData({ ...formData, bname: '', bemail: '', bpassword: '' })
 
     }
 
@@ -109,25 +107,23 @@ const Signup = () => {
                                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your name</label>
                                         <input
                                             required
-                                            value={name}
-                                            onChange={(e) => { setname(e.target.value) }}
+                                            value={isbuyer?formData.name:formData.bname}
+                                            onChange={(e) => { setFormData({...formData,[isbuyer? 'name':'bname']:e.target.value}) }}
                                             type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="user" />
                                     </div>
                                     <div>
                                         <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
                                         <input
                                             required
-                                            value={email}
-                                            onChange={(e) => { setemail(e.target.value) }}
-                                            type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" />
+                                            value={isbuyer?formData.email:formData.bemail}
+                                            onChange={(e) => { setFormData({...formData,[isbuyer? 'email':'bemail']:e.target.value}) }}  type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" />
                                     </div>
                                     <div>
                                         <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
                                         <input
                                             required
-                                            value={password}
-                                            onChange={(e) => { setpassword(e.target.value) }}
-                                            type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                                            value={isbuyer?formData.password:formData.bpassword}
+                                            onChange={(e) => { setFormData({...formData,[isbuyer? 'password':'bpassword']:e.target.value}) }}  type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                                     </div>
                                     <div class="flex items-center justify-between">
                                         <div class="flex items-start">
@@ -162,24 +158,22 @@ const Signup = () => {
                                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Bussiness name</label>
                                         <input
                                             required
-                                            value={bname}
-                                            onChange={(e) => { setbname(e.target.value) }}
-                                            type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="user" />
+                                            value={isbuyer?formData.name:formData.bname}
+                                            onChange={(e) => { setFormData({...formData,[isbuyer? 'name':'bname']:e.target.value}) }} type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="user" />
                                     </div>
                                     <div>
                                         <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Business email</label>
                                         <input
                                             required
-                                            value={bemail}
-                                            onChange={(e) => { setbemail(e.target.value) }}
-                                            type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" />
+                                            value={isbuyer?formData.email:formData.bemail}
+                                            onChange={(e) => { setFormData({...formData,[isbuyer? 'email':'bemail']:e.target.value}) }} type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" />
                                     </div>
                                     <div>
                                         <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
                                         <input
                                             required
-                                            value={bpassword}
-                                            onChange={(e) => { setbpassword(e.target.value) }}
+                                            value={isbuyer?formData.password:formData.bpassword}
+                                            onChange={(e) => { setFormData({...formData,[isbuyer? 'password':'bpassword']:e.target.value}) }} 
                                             type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                                     </div>
                                     <div class="flex items-center justify-between">

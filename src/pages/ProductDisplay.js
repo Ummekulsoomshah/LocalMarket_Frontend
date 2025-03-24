@@ -10,7 +10,7 @@ const ProductDisplay = () => {
   useEffect(() => {
     const fetchProductDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/bussiness/getProductDetails/${insertId}`);
+        const response = await axios.get(`http://localhost:3000/getProductDetails/${insertId}`);
         if (response.status === 200) {
           setProduct(response.data);
         } else {
