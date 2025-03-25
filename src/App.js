@@ -23,6 +23,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import AdmincatagoryAdd from "./pages/AdmincatagoryAdd";
 import ItemaddPage from "./pages/ItemaddPage";
 import ProductDisplay from "./pages/ProductDisplay";
+import SpecificCategoryProduct from "./pages/SpecificCategoryProduct";
 
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
           <Route path="/catagAddadmin" element={<AdmincatagoryAdd/>}/>
           <Route path="/add-product/:catagory" element={<ItemaddPage/>}/>
           <Route path="/ProductDisplay/:insertId" element={<ProductDisplay/>}/>
+          <Route path='/SpecificCategoryProduct' element={<SpecificCategoryProduct/>}/>
         </Routes>
         {/* <Footer /> */}
       </Router>

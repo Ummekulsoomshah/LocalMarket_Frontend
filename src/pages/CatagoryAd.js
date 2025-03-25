@@ -7,7 +7,6 @@ const CatagoryAd = () => {
     const navigate = useNavigate()
     useEffect(() => {
         try {
-
             const fetchCategory = async () => {
                 const response = await axios.get('http://localhost:3000/categories')
                 if (response.status === 200) {

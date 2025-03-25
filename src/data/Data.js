@@ -39,27 +39,19 @@ export const navbar = [
 ];
 
 export const banners = [
-  // {
-  //   banner: "../images/slider3.jpg",
-  // },
-  // {
-  //   banner: "../images/slider2.png",
-  // },
-  // {
-  //   banner: "../images/slider1.png",
-  // },
+
  
   {
-    banner: "../images/slider6.jpg",
+    banner: "../images/2.png",
   },
   {
-    banner: "../images/slider8.jpg",
+    banner: "../images/3.png",
   },
   {
-    banner: "../images/slider4.jpg",
+    banner: "../images/4.png",
   },
   {
-    banner: "../images/slider9.jpg",
+    banner: "../images/1.png",
   },
   
 ];

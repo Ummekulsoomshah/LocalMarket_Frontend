@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { BiChevronRight, BiChevronLeft } from "react-icons/bi";
+import CategoryList from "./CategoryList";
 
 const Banner = () => {
   var settings = {
@@ -19,39 +20,19 @@ const Banner = () => {
   };
   return (
     <div>
-      <div className="w-9/12 m-auto mt-5">
+      <div className="w-11/12 ht-40 m-auto mt-2">
         <Slider {...settings}>
           {banners.map((data, key) => (
             <div className="relative" key={key}>
               <img src={data.banner} alt="banner" className="w-full" />
               <div className="banner-items">
-                <h2>All Collections</h2>
-                <h1>Get Up to 20% Off on featured items.</h1>
-                {/* // <button type="button" className="mt-4 btn pt-3 pb-3 pr-6 pl-6">
-                //   Shop Now
-                // </button> */}
+              
               </div>
             </div>
           ))}
         </Slider>
 
-        <div className="mwa flex gap-8 mt-8 ">
-          {bannar_down.map((val, index) => (
-            <div className="w-1/3 overflow-hidden relative" key={index}>
-              <img
-                src={val.img}
-                alt="womenmenaccessories"
-                className="w-full overflow-hidden transition-transform transform hover:scale-110 duration-700"
-              />
-              <button
-                type="button"
-                className="mt-4 btn pt-3 pb-3 pr-6 pl-6 text-white absolute top-1/2 left-1/2 translate"
-              >
-                {val.name}
-              </button>
-            </div>
-          ))}
-        </div>
+        <CategoryList/>
       </div>
     </div>
   );
