@@ -6,17 +6,17 @@ import {
   Shop,
   Cart,
   Contact,
-  Checkout,
+ 
   NotFoundPage,
   Header,
   Footer,
   Login,
-  Signup,
+ 
 } from "./pages/index";
 import SellerDashboard from "./pages/SellerDashboard";
 import AddProducts from "./pages/AddProduct";
 import AddReview from "./pages/AddReview";
-import Payment from "./pages/Payment"; // New Payment Page
+
 import CatagoryAd from "./pages/CatagoryAd";
 import Adminlogin from "./pages/Adminlogin";
 import AdminDashboard from "./pages/AdminDashboard";
@@ -37,12 +37,12 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/sellerdashboard" element={<SellerDashboard />} />
-          <Route path="/checkout" element={<Checkout />} />
+         
           <Route path="/addproducts" element={<AddProducts />} />
           <Route path="/addreview" element={<AddReview />} />
           <Route path="/Login" element={<Login/>} />
-          <Route path="/Signup" element={<Signup/>} />
-          <Route path="/payment" element={<Payment />} /> {/* Payment Route */}
+       
+     
           <Route path="/*" element={<NotFoundPage />} />
           <Route path='/CatagoryAd' element={<CatagoryAd/>}/>
           <Route path="/adminlogin" element={<Adminlogin/>}/>
