@@ -117,7 +117,7 @@ const SpecificCategoryProduct = () => {
                     </div> */}
                             <div class="flex items-center justify-between ">
                                 <span class="text-1xl font-bold text-gray-900 dark:text-white">Rs. {product.price}</span>
-                                <a href="#" class="hover:bg-[#b0c4de] hover:rounded-full focus:ring-4 focus:outline-none font-medium rounded-lg px-5 py-2.5 text-center text-2xl"><BsCart4 /></a>
+                                <Link to={`/addToCart/${product.id}`} class="hover:bg-[#b0c4de] hover:rounded-full focus:ring-4 focus:outline-none font-medium rounded-lg px-5 py-2.5 text-center text-2xl"><BsCart4 /></Link>
                             </div>
                         </div>
                     </div>
