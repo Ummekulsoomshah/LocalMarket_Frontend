@@ -24,6 +24,7 @@ import AdmincatagoryAdd from "./pages/AdmincatagoryAdd";
 import ItemaddPage from "./pages/ItemaddPage";
 import ProductDisplay from "./pages/ProductDisplay";
 import SpecificCategoryProduct from "./pages/SpecificCategoryProduct";
+import ProductDetails from "./pages/ProductDetails";
 
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
           <Route path="/catagAddadmin" element={<AdmincatagoryAdd/>}/>
           <Route path="/add-product/:catagory/:categId" element={<ItemaddPage/>}/>
           <Route path="/ProductDisplay/:insertId" element={<ProductDisplay/>}/>
+          <Route path="/ProductDetails/:prodId" element={<ProductDetails/>}/>
           <Route path='/SpecificCategoryProduct/:categId' element={<SpecificCategoryProduct/>}/>
         </Routes>
         <Footer />

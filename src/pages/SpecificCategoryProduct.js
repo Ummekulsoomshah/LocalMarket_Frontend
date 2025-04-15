@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import img from '../assets/testi2.jpg'
 import { BsCart4 } from "react-icons/bs";
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const SpecificCategoryProduct = () => {
@@ -15,8 +15,6 @@ const SpecificCategoryProduct = () => {
                     const data = await response.data.response
                     console.log(data)
                     await setProducts(data[0])
-                    // console.log('products',products)
-                    // console.log('products',products.length)
                 } else {
                     console.log("error in fetching data")
                 }
@@ -87,9 +85,9 @@ const SpecificCategoryProduct = () => {
             {products.map((product) => {
                 return (
                     <div class="w-full max-w-sm bg-white border border-gray-200 shadow-sm dark:bg-gray-800 dark:border-gray-700">
-                        <a href="#">
+                        <Link to={`/ProductDetails/${product.id}`}>
                             <img class=" rounded-t-lg w-full h-64 object-cover mb-3" src={product.image} alt="product image" />
-                        </a>
+                        </Link>
                         <div class="px-3 pb-3">
                             <a href="#">
                                 <h5 class="text-1xl font-semibold tracking-tight text-gray-900 dark:text-white mb-1">{product.title}</h5>
