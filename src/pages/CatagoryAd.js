@@ -36,7 +36,7 @@ const CatagoryAd = () => {
                     return (
                     <li className="bg-gradient-to-r from-blue-500 via-purple-500
                to-pink-500 p-6 h-48 border border-black justify-around flex ml-6 text-2xl w-full mx-auto bg-white rounded-xl shadow-lg items-center justify-center text-white"
-               onClick={() => navigate(`/add-product/${catagory.name}`)}>
+               onClick={() => navigate(`/add-product/${catagory.name}/${catagory.id}`)}>
                         <div >{catagory.name}</div>
                     </li>)
                 })}

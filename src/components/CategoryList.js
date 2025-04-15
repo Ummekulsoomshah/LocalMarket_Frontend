@@ -37,8 +37,8 @@ const CategoryList = () => {
                 return (
                     <li
                         key={catagory.name}
-                        className="p-2 border cursor-pointer hover:bg-[#b0c4de] hover:border-none hover:rounded-full border-black flex justify-center items-center text-1xl bg-white rounded-xl shadow-lg text-black w-30"
-                        onClick={() => navigate(`/add-product/${catagory.name}`)}
+                        className="p-2 border cursor-pointer hover:bg-[#b0c4de] hover:border-none hover:rounded-full border-black flex justify-center items-center text-1xl bg-white rounded-xl shadow-lg text-black w-40"
+                        onClick={() => navigate(`/SpecificCategoryProduct/${catagory.id}`)}
                     >
                         <div>{catagory.name}</div>
                     </li>

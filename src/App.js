@@ -48,11 +48,11 @@ function App() {
           <Route path="/adminlogin" element={<Adminlogin/>}/>
           <Route path="AdminDashboard" element={<AdminDashboard/>}/>
           <Route path="/catagAddadmin" element={<AdmincatagoryAdd/>}/>
-          <Route path="/add-product/:catagory" element={<ItemaddPage/>}/>
+          <Route path="/add-product/:catagory/:categId" element={<ItemaddPage/>}/>
           <Route path="/ProductDisplay/:insertId" element={<ProductDisplay/>}/>
-          <Route path='/SpecificCategoryProduct' element={<SpecificCategoryProduct/>}/>
+          <Route path='/SpecificCategoryProduct/:categId' element={<SpecificCategoryProduct/>}/>
         </Routes>
-        {/* <Footer /> */}
+        <Footer />
       </Router>
     </div>
   );

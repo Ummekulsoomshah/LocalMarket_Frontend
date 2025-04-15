@@ -54,7 +54,7 @@ const Header = () => {
               </div>
             </form>
             <div class="flex items-center justify-center" >
-              <a href="#" class="text-gray-800 dark:text-black hover:bg-[#b0c4de] hover:rounded-full focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-3 py-3 mr-1 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">Sign in</a>
+              <Link to='/login' class="text-gray-800 dark:text-black hover:bg-[#b0c4de] hover:rounded-full focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-3 py-3 mr-1 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">Sign in</Link>
               <a href="#" class="text-gray-800 dark:text-black hover:bg-[#b0c4de] hover:rounded-full focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-3 py-3 mr-1 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"><FaRegHeart /></a>
               <a href="#" class="text-gray-800 dark:text-black hover:bg-[#b0c4de] hover:rounded-full focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-3 py-3 mr-1 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"><BsCart4 /></a>
             </div>

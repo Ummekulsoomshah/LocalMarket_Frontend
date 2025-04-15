@@ -4,7 +4,8 @@ import { useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 const ItemaddPage = () => {
   const navigate = useNavigate()
-  let { catagory } = useParams()
+  let { categId } = useParams()
+  let {catagory}=useParams()
   const [isused, setused] = useState(false)
   const [fields, setFields] = useState([])
 
@@ -30,7 +31,7 @@ const ItemaddPage = () => {
     formdata.append("description", description);
     formdata.append("price", price);
     formdata.append("isUsed", isused);
-    formdata.append("category", catagory);
+    formdata.append("categId", categId);
     formdata.append('fields',JSON.stringify(dynamicfields))
 
     // Append dynamic fields
@@ -102,7 +103,7 @@ const ItemaddPage = () => {
 
               </div>
               <div>
-                <h3 className="font-bold text-lg">{catagory}</h3>
+                <h3 className="font-bold text-lg">{categId}</h3>
                 <p className="text-sm text-gray-500">All used or Second hand items you can sell</p>
               </div>
             </div>
