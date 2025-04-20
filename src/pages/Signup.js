@@ -18,10 +18,18 @@ const Signup = () => {
         const userData = {
             name: formData.name,
             email: formData.email,
-            password: formData.password
+            password: formData.password,
+            role: 'personal'
         }
         try {
-            const response = await axios.post('http://localhost:3000/user/signup', userData)
+            const response = await axios.post('http://localhost:3000/user/signup', userData,
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "authorization": `Bearer ${localStorage.getItem('token')}`
+                    }
+                }
+            )
             if (response.status == 200) {
                 const token = response.data.token
                 localStorage.setItem('token', token)
@@ -42,11 +50,19 @@ const Signup = () => {
         const bussinessData = {
             name: formData.bname,
             email: formData.bemail,
-            password: formData.bpassword
+            password: formData.bpassword,
+            role: 'bussiness'
         }
         console.log(bussinessData)
         try {
-            const response = await axios.post('http://localhost:3000/bussiness/signup', bussinessData)
+            const response = await axios.post('http://localhost:3000/bussiness/signup', bussinessData,
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "authorization": `Bearer ${localStorage.getItem('token')}`
+                    }
+                }
+            )
             if (response.status == 200) {
                 const token = response.data.token
                 localStorage.setItem('token', token)

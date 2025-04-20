@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import img from '../assets/testi2.jpg'
 import { BsCart4 } from "react-icons/bs";
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const SpecificCategoryProduct = () => {
     const { categId } = useParams()
@@ -25,7 +25,29 @@ const SpecificCategoryProduct = () => {
         fetchProducts()
     }, [])
 
-
+    const handleCart = async (prodId) => {
+        try {
+            const result = await axios.post(`http://localhost:3000/addToCart/${prodId}`,{categId},
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "authorization": `Bearer ${localStorage.getItem('token')}`
+                    }
+                }
+            )
+            if (result.status == 200) {
+                toast.success("Product added into cart !", {
+                    position: "top-right"
+                  })
+            } else {
+                toast.error("Error into cart !", {
+                    position: "top-right",
+                  })
+            }
+        } catch (error) {
+            console.log('error', error)
+        }
+    }
     console.log(products.length)
     if (products.length == 0) {
         return (
@@ -115,10 +137,10 @@ const SpecificCategoryProduct = () => {
                         </div>
                         <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-sm dark:bg-blue-200 dark:text-blue-800 ms-3">5.0</span>
                     </div> */}
-                            <div class="flex items-center justify-between ">
+                            <button onClick={() => handleCart(product.id)} class="flex items-center justify-between ">
                                 <span class="text-1xl font-bold text-gray-900 dark:text-white">Rs. {product.price}</span>
-                                <Link to={`/addToCart/${product.id}`} class="hover:bg-[#b0c4de] hover:rounded-full focus:ring-4 focus:outline-none font-medium rounded-lg px-5 py-2.5 text-center text-2xl"><BsCart4 /></Link>
-                            </div>
+                                <p class="hover:bg-[#b0c4de] hover:rounded-full focus:ring-4 focus:outline-none font-medium rounded-lg px-5 py-2.5 text-center text-2xl"><BsCart4 /></p>
+                            </button>
                         </div>
                     </div>
                 )

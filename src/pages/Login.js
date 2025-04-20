@@ -15,10 +15,18 @@ const Login = () => {
         e.preventDefault()
         const userData = {
             password: formData.password,
-            email: formData.email
+            email: formData.email,
+            role: 'personal'
         }
         try {
-            const response = await axios.post('http://localhost:3000/user/login', userData)
+            const response = await axios.post('http://localhost:3000/user/login', userData,
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "authorization": `Bearer ${localStorage.getItem('token')}`
+                    }
+                }
+            )
             if (response.status === 200) {
                 const token = response.data.token
                 localStorage.setItem('token', token)
@@ -37,10 +45,19 @@ const Login = () => {
         e.preventDefault()
         const bussinessData = {
             email: formData.bemail,
-            password: formData.bpassword
+            password: formData.bpassword,
+            role:'bussiness'    
+
         }
         try {
-            const response = await axios.post('http://localhost:3000/bussiness/login', bussinessData)
+            const response = await axios.post('http://localhost:3000/bussiness/login', bussinessData,
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "authorization": `Bearer ${localStorage.getItem('token')}`
+                    }
+                }
+            )
             if (response.status === 200) {
                 const token = response.data.token
                 localStorage.setItem('token', token)
