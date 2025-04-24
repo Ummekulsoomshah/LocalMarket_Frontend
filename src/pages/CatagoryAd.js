@@ -7,9 +7,8 @@ const CatagoryAd = () => {
     const navigate = useNavigate()
     useEffect(() => {
         try {
-
             const fetchCategory = async () => {
-                const response = await axios.get('http://localhost:3000/bussiness/categories')
+                const response = await axios.get('http://localhost:3000/categories')
                 if (response.status === 200) {
                     const data = response.data.categories[0]
                     console.log("data", data)
@@ -37,7 +36,7 @@ const CatagoryAd = () => {
                     return (
                     <li className="bg-gradient-to-r from-blue-500 via-purple-500
                to-pink-500 p-6 h-48 border border-black justify-around flex ml-6 text-2xl w-full mx-auto bg-white rounded-xl shadow-lg items-center justify-center text-white"
-               onClick={() => navigate(`/add-product/${catagory.name}`)}>
+               onClick={() => navigate(`/add-product/${catagory.name}/${catagory.id}`)}>
                         <div >{catagory.name}</div>
                     </li>)
                 })}
