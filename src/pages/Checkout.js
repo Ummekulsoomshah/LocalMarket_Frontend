@@ -1,3 +1,100 @@
+// import React, { useState } from "react";
+// import PageHeading from "../components/PageHeading";
+
+// const Checkout = () => {
+//   const [checkoutData, setCheckoutData] = useState({
+//     firstName: "",
+//     lastName: "",
+//     email: "",
+//     phone: "",
+//     street: "",
+//     city: "",
+//     state: "",
+//     zip: "",
+//     amount: 100.0, // Example amount
+//     paymentStatus: "Pending",
+//   });
+
+//   // Handle input changes
+//   const handleChange = (e) => {
+//     const { name, value } = e.target;
+//     setCheckoutData((prev) => ({
+//       ...prev,
+//       [name]: value,
+//     }));
+//   };
+
+//   // Handle form submission for checkout details (non-PayFast)
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     try {
+//       const response = await fetch("http://localhost:3000/api/checkout", {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify(checkoutData),
+//       });
+
+//       const data = await response.json();
+
+//       if (response.ok) {
+//         console.log("Success:", data);
+//         // Redirect to Thank You page
+//         window.location.href = "http://your-website.com/thank-you";
+//       } else {
+//         console.error("Error:", data);
+//       }
+//     } catch (error) {
+//       console.error("Checkout error:", error);
+//     }
+//   };
+
+//   // Handle PayFast payment process (removed PayFast number)
+//   const handlePayFastPayment = async () => {
+//     // Check if required fields are filled before proceeding
+//     if (
+//       !checkoutData.firstName ||
+//       !checkoutData.lastName ||
+//       !checkoutData.email ||
+//       !checkoutData.amount
+//     ) {
+//       alert("Please fill all the required fields before proceeding.");
+//       return;
+//     }
+  
+//     try {
+//       console.log("PayFast payment button clicked");
+  
+//       // Send request to the backend to generate PayFast URL
+//       const response = await fetch("http://localhost:3000/api/payfast", {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify({
+//           amount: checkoutData.amount,
+//           email: checkoutData.email,
+//           firstName: checkoutData.firstName,
+//           lastName: checkoutData.lastName,
+//         }),
+//       });
+  
+//       // Log response status and data
+//       console.log("Response status:", response.status); // Log HTTP status
+//       const data = await response.json();
+//       console.log("Backend response data:", data); // Log response data
+  
+//       if (response.ok && data.url) {
+//         // If response is successful and URL is returned, redirect the user
+//         console.log("Redirecting to PayFast URL:", data.url);
+//         window.location.href = data.url;
+//       } else {
+//         console.error("Failed to create PayFast payment link:", data);
+//         alert("There was an issue creating the payment link.");
+//       }
+//     } catch (error) {
+//       console.error("Payment error:", error);
+//       alert("An error occurred during the payment process. Please try again.");
+//     }
+//   };
+  
 import React, { useState } from "react";
 import PageHeading from "../components/PageHeading";
 
@@ -28,7 +125,7 @@ const Checkout = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:3000/api/checkout", {
+      const response = await fetch("http://localhost:3001/api/checkout", { // Update API URL
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(checkoutData),
@@ -48,7 +145,7 @@ const Checkout = () => {
     }
   };
 
-  // Handle PayFast payment process (removed PayFast number)
+  // Handle PayFast payment process
   const handlePayFastPayment = async () => {
     // Check if required fields are filled before proceeding
     if (
@@ -65,7 +162,7 @@ const Checkout = () => {
       console.log("PayFast payment button clicked");
   
       // Send request to the backend to generate PayFast URL
-      const response = await fetch("http://localhost:3000/api/payfast", {
+      const response = await fetch("http://localhost:3001/api/payfast", { // Update API URL
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -76,8 +173,6 @@ const Checkout = () => {
         }),
       });
   
-      // Log response status and data
-      console.log("Response status:", response.status); // Log HTTP status
       const data = await response.json();
       console.log("Backend response data:", data); // Log response data
   
@@ -95,7 +190,6 @@ const Checkout = () => {
     }
   };
   
-
   return (
     <div className="px-8 py-8 w-full">
       <PageHeading home="Home" pagename="Checkout" />
