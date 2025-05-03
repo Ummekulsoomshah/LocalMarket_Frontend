@@ -28,7 +28,7 @@ const Header = () => {
       <div
         className={`sticky top-0 z-50 transition-all duration-300 ease-in-out font-poppins ${
           isSticky
-            ? "bg-gray-700 text-white shadow-md border-b border-gray-700"
+            ? "bg-gradient-to-r from-gray-800 to-gray-700 text-white shadow-md border-b border-gray-700"
             : "bg-gradient-to-r from-gray-800 to-gray-700 text-white"
         }`}
       >

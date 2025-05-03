@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="bg-gradient-to-r from-gray-700 to-gray-600  text-white w-full">
+    <div className="bg-gradient-to-r from-gray-800 to-gray-700 to-gray-600  text-white w-full">
       <div className="w-9/12 mx-auto py-4"> {/* Reduced padding here to decrease height */}
         {/* Footer Content */}
         <div className="flex flex-wrap justify-between items-center gap-12 md:gap-24">

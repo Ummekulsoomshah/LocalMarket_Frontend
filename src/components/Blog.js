@@ -13,6 +13,7 @@ export const Blog = () => {
     autoplay: false,
     autoplaySpeed: 2000,
   };
+
   return (
     <div>
       <div>
@@ -31,9 +32,8 @@ export const Blog = () => {
                   <img
                     src={val.img}
                     alt="womenmenaccessories"
-                    className="w-full"
+                    className="w-full h-64 object-cover" // Set height and object-cover for consistent size
                   />
-
                   <div className="tag absolute top-0 right-0 z-10">
                     <p className="bg-red-600 w-12 text-center grid place-items-center text-white p-2 uppercase">
                       {val.tag}

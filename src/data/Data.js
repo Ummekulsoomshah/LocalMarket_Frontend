@@ -40,6 +40,16 @@ export const banners = [
   {
     banner: "../images/slider6.jpg",
   },
+
+  
+  {
+    banner: "../images/laptop.jpeg",
+  },
+  {
+    banner: "../images/books.jpeg",
+  },
+  
+ 
   {
     banner: "../images/slider8.jpg",
   },
@@ -148,40 +158,31 @@ export const reviews = [
   },
 
 ];
-
 export const blogs = [
   {
     id: 1,
-    img: "../images/10-home_default.jpg",
+    img: "../images/eyeshades.jpeg",
     tag: "8 May",
-    short_description: "Lorem ipsum dolor",
- 
+    short_description: "Discover fresh ideas to transform your living space.",
   },
   {
     id: 2,
-    img: "../images/11-home_default.jpg",
+    img: "../images/kurti.png",
     tag: "8 Aug",
- 
-    short_description: "Lorem ipsum dolor",
-    
+    short_description: "Explore the latest trends in outfits and comfort.",
   },
   {
     id: 3,
     img: "../images/12-home_default.jpg",
     tag: "8 May",
-  
-    short_description: "Lorem ipsum dolor",
-    
+    short_description: "Add a touch of elegance with minimalistic setups.",
   },
   {
     id: 4,
     img: "../images/11-home_default.jpg",
     tag: "10 Mar",
-   
-    short_description: "Lorem ipsum dolor",
-
+    short_description: "Smart design tips to refresh your home this season.",
   },
-
 ];
 
 export const chatbot = [
