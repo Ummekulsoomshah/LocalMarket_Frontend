@@ -184,30 +184,6 @@ export const blogs = [
 
 ];
 
-export const footer = [
-  {
-    id: 3,
-    header: "Contact Us",
-    content1: "About Us",
-    content2: "Addresses",
-  },
-  {
-    id: 4,
-    header: "Transactions",
-    content1: "Order",
-    content2: "Payments",
-  },
-  {
-    id: 5,
-    header: "Subscribe to get important updates",
-    images: [
-      { src: "/images/insta.jpeg", alt: "Instagram" },
-      { src: "/images/facebook.jpeg", alt: "Facebook" },
-    ],
-  },
-];
-
-
 export const chatbot = [
   {
     id: 1,

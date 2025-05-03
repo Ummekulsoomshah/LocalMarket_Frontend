@@ -3,58 +3,58 @@ import PageHeading from "../components/PageHeading";
 
 const Contact = () => {
   return (
-    <div className="px-4 py-8 ">
+    <div className="px-6 py-12 bg-gray-100 font-poppins">
       <PageHeading home="Home" pagename="Contact" />
-      <div className="mx-auto max-w-screen-md  rounded-lg shadow-lg p-6 bg-gray-300">
-        <h2 className="mb-4 text-3xl font-bold text-center text-gray-700">
+      <div className="mx-auto max-w-screen-md rounded-lg shadow-lg p-8 bg-white border-2 border-gray-300">
+        <h2 className="mb-6 text-3xl font-bold text-center text-gray-800">
           Contact Us
         </h2>
-        <p className="mb-6 text-lg text-center text-gray-600 font-bold">
-          Got an issue? Want to send feedback? Need any additional details? Let us know.
+        <p className="mb-6 text-lg text-center text-gray-600">
+          Have a question or suggestion? Feel free to reach out to us. We're happy to assist you!
         </p>
-        <form action="#" className="space-y-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <form action="#" className="space-y-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
               <label
                 htmlFor="firstName"
-                className="block mb-1 text-sm font-medium text-gray-900"
+                className="block text-sm font-bold text-gray-800"
               >
                 First Name
               </label>
               <input
                 type="text"
                 id="firstName"
-                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full py-2 px-3"
-                placeholder="Enter First Name"
+                className="mt-2 w-full p-2 text-sm border border-gray-300 rounded-lg text-gray-700 placeholder-gray-400 focus:ring-none focus:border-gray-500 shadow-md"
+                placeholder="Enter your first name"
                 required
               />
             </div>
             <div>
               <label
                 htmlFor="lastName"
-                className="block mb-1 text-sm font-medium text-gray-900"
+                className="block text-sm font-bold text-gray-800"
               >
                 Last Name
               </label>
               <input
                 type="text"
                 id="lastName"
-                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full py-2 px-3"
-                placeholder="Enter Last Name"
+                className="mt-2 w-full p-2 text-sm border border-gray-300 rounded-lg text-gray-700 placeholder-gray-400 focus:ring-none focus:border-gray-500 shadow-md"
+                placeholder="Enter your last name"
               />
             </div>
           </div>
           <div>
             <label
               htmlFor="email"
-              className="block mb-1 text-sm font-medium text-gray-900"
+              className="block text-sm font-bold text-gray-800"
             >
               Your Email
             </label>
             <input
               type="email"
               id="email"
-              className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full py-2 px-3"
+              className="mt-2 w-full p-2 text-sm border border-gray-300 rounded-lg text-gray-700 placeholder-gray-400 focus:ring-none focus:border-gray-500 shadow-md"
               placeholder="abc@example.com"
               required
             />
@@ -62,37 +62,36 @@ const Contact = () => {
           <div>
             <label
               htmlFor="subject"
-              className="block mb-1 text-sm font-medium text-gray-900"
+              className="block text-sm font-bold text-gray-800"
             >
               Subject
             </label>
             <input
               type="text"
               id="subject"
-              className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full py-2 px-3"
-              placeholder="What issue/suggestion do you have?"
+              className="mt-2 w-full p-2 text-sm border border-gray-300 rounded-lg text-gray-700 placeholder-gray-400 focus:ring-none focus:border-gray-500 shadow-md"
+              placeholder="What is your query about?"
               required
             />
           </div>
           <div>
             <label
               htmlFor="message"
-              className="block mb-1 text-sm font-medium text-gray-900"
+              className="block text-sm font-bold text-gray-800"
             >
               Your Message
             </label>
             <textarea
               id="message"
-              rows="6"
-              className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full py-2 px-3"
-              placeholder="Query/Suggestion..."
+              rows="4"  // Reduced height by changing rows
+              className="mt-2 w-full p-2 text-sm border border-gray-300 rounded-lg text-gray-700 placeholder-gray-400 focus:ring-none focus:border-gray-500 shadow-md"
+              placeholder="Describe your issue or suggestion here..."
             ></textarea>
           </div>
-          <div>
+          <div className="flex justify-center">
             <button
               type="submit"
-              style={{ width: "200px", height: "50px", marginLeft: "34rem" }}
-              className="py-3 px-4 bg-green-600 hover:bg-green-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="py-3 px-8 bg-gray-600 hover:bg-gray-700 text-white rounded-lg text-lg focus:outline-none focus:ring-none focus:border-gray-500"
             >
               Send Message
             </button>
@@ -104,4 +103,3 @@ const Contact = () => {
 };
 
 export default Contact;
-

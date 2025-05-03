@@ -21,8 +21,8 @@ import AdmincatagoryAdd from "./pages/AdmincatagoryAdd";
 import ItemaddPage from "./pages/ItemaddPage";
 import AboutPage from "./pages/AboutPage";
 import Chatbot from "./components/Chatbot"; 
-
-
+import Success from "./pages/Success";
+import Cancel from "./pages/Cancel";
 
 function App() {
   return (
@@ -31,6 +31,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/shop" element={<Shop />} />
+        <Route path="/success" element={<Success />} /> 
+        <Route path="/cancel" element={<Cancel />} />   
         <Route path="/contact" element={<Contact />} />
         <Route path="/sellerdashboard" element={<SellerDashboard />} />
         <Route path="/checkout" element={<Checkout />} />

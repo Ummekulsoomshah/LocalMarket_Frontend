@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { navbar } from "../data/Data";
 import { BiSearch, BiShoppingBag, BiUserCircle } from "react-icons/bi";
 import Sidebar from "./Sidebar";
@@ -8,7 +8,6 @@ import { useSelector } from "react-redux";
 const Header = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const navigate = useNavigate();
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -19,44 +18,56 @@ const Header = () => {
       setIsSticky(window.scrollY > 0);
     };
     window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const { totalItems } = useSelector((state) => state.cart);
 
   return (
     <>
-      <div className="sticky top-0 z-50 bg-gray-700 shadow-lg transition-colors duration-300 ease-in-out">
-        <div className="flex flex-wrap justify-between pt-3 pb-3 w-10/12 m-auto">
+      <div
+        className={`sticky top-0 z-50 transition-all duration-300 ease-in-out font-poppins ${
+          isSticky
+            ? "bg-gray-700 text-white shadow-md border-b border-gray-700"
+            : "bg-gradient-to-r from-gray-800 to-gray-700 text-white"
+        }`}
+      >
+        <div className="flex items-center justify-between px-6 py-4 max-w-7xl mx-auto">
           {/* Logo */}
-          <div className="logo ml-8">
-          <img src="./images/logo3.jpg" alt="logo" className="w-40 h-20 object-contain" />
+          <div className="logo">
+            <img
+              src="./images/logo3.jpg"
+              alt="logo"
+              className="w-36 h-16 object-contain"
+            />
           </div>
 
-          {/* Navigation Links */}
-          <ul className="flex flex-wrap text-xl font-medium uppercase text-white mt-7">
+          <ul className="flex space-x-8 text-lg font-semibold uppercase">
             {navbar.map((nav, index) => (
-              <li className="mr-10" key={index}>
-                <Link className="hover:text-white" to={nav.path}>
+              <li key={index}>
+                <Link
+                  to={nav.path}
+                  className={`transform transition-transform duration-300 hover:scale-105 text-white hover:text-gray-300`}
+                >
                   {nav.nav}
                 </Link>
               </li>
             ))}
           </ul>
 
-          
-          <div className="flex items-center space-x-4 mr-8">
-            {/* Search Icon */}
-            <Link className="text-2xl text-white mt-3">
+          {/* Icons */}
+          <div className="flex items-center space-x-6">
+            <Link
+              className={`text-2xl transform transition-transform duration-300 hover:scale-105 text-white hover:text-gray-300`}
+            >
               <BiSearch />
             </Link>
 
-            {/* Shopping Cart Icon */}
-            <div className="relative mt-3">
-              <Link className="text-2xl text-white" onClick={toggleSidebar}>
+            <div className="relative">
+              <Link
+                onClick={toggleSidebar}
+                className={`text-2xl transform transition-transform duration-300 hover:scale-105 text-white hover:text-gray-300`}
+              >
                 <BiShoppingBag />
               </Link>
               <div className="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full px-2">
@@ -64,15 +75,17 @@ const Header = () => {
               </div>
             </div>
 
-            {/* Login/Signup Icon */}
-            <Link to="/SignupLogin" className="text-3xl text-white hover:text-gray-300 transition mt-2">
+            <Link
+              to="/SignupLogin"
+              className={`text-3xl transform transition-transform duration-300 hover:scale-105 text-white hover:text-gray-300`}
+            >
               <BiUserCircle />
             </Link>
           </div>
         </div>
       </div>
 
-      {/* Sidebar Component */}
+      {/* Sidebar */}
       <Sidebar isSidebarOpen={isSidebarOpen} closeSidebar={toggleSidebar} />
     </>
   );
