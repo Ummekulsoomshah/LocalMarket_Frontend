@@ -8,10 +8,10 @@ const ItemaddPage = () => {
   let {catagory}=useParams()
   const [isused, setused] = useState(false)
   const [fields, setFields] = useState([])
-
   const [image, setimage] = useState(null)
   const [title, settitle] = useState('')
   const [description, setdiscription] = useState('')
+  const [quantity,setQuantity]=useState(0)
   const [price, setPrice] = useState('')
   const [dynamicfields, setdynamicfields] = useState({})
   const handleFieldchange = (fieldname, value) => {
@@ -33,18 +33,14 @@ const ItemaddPage = () => {
     formdata.append("isUsed", isused);
     formdata.append("categId", categId);
     formdata.append('fields',JSON.stringify(dynamicfields))
+    formdata.append("quantity",quantity)
 
-    // Append dynamic fields
-    // Object.entries(dynamicfields).forEach(([key, value]) => {
-    //   formdata.append(key, value);
-    // });
 
     for (let [key, value] of formdata.entries()) {
       console.log(`${key}: ${value}`);
     }
 
     try {
-      console.log(localStorage.getItem('token'))
       const response = await axios.post('http://localhost:3000/adproducts', formdata,
         {
           headers: {
@@ -75,8 +71,6 @@ const ItemaddPage = () => {
         if (response.status == 200) {
           const data = await response.data.fields
           setFields(data)
-          console.log("data", data)
-          console.log("fields", fields)
           console.log("fileds retrived successfuly")
         } else {
           console.log("error in retriving fields")
@@ -190,8 +184,17 @@ const ItemaddPage = () => {
               />
             </div>
             <div className="mb-4">
+              <label className="block font-semibold mb-2">Quantity*</label>
+              <input
+                value={quantity}
+                onChange={(e) => setQuantity(e.target.value)}
+                className="w-full border p-2 rounded"
+                placeholder="please enter the number of items"
+              />
+            </div>
+            <div className="mb-4">
               <label className="block font-semibold mb-2">Price*</label>
-              <textarea
+              <input
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
                 className="w-full border p-2 rounded"

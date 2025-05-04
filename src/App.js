@@ -6,7 +6,6 @@ import {
   Shop,
   Cart,
   Contact,
- 
   NotFoundPage,
   Header,
   Footer,
@@ -16,7 +15,6 @@ import {
 import SellerDashboard from "./pages/SellerDashboard";
 import Success from "./pages/Success";
 import Cancel from "./pages/Cancel"
-import AddProducts from "./pages/AddProduct";
 import AddReview from "./pages/AddReview";
 import CatagoryAd from "./pages/CatagoryAd";
 import Adminlogin from "./pages/Adminlogin";
@@ -39,8 +37,6 @@ function App() {
           <Route path="/shop" element={<Shop />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/sellerdashboard" element={<SellerDashboard />} />
-          <Route path="/addproducts" element={<AddProducts />} />
           <Route path="/addreview" element={<AddReview />} />
           <Route path="/Login" element={<Login/>} />
           <Route path="/signup" element={<Signup/>}/>
@@ -56,6 +52,7 @@ function App() {
           <Route path='/cart' element={<Cart/>}/>
           <Route path='/success' element={<Success/>}/>
           <Route path='/cancel' element={<Cancel/>}/>
+          <Route path="/sellerDashboard" element={<SellerDashboard />} />
         </Routes>
         <Footer />
       </Router>
