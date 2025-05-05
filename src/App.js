@@ -23,6 +23,7 @@ import AboutPage from "./pages/AboutPage";
 import Chatbot from "./components/Chatbot"; 
 import Success from "./pages/Success";
 import Cancel from "./pages/Cancel";
+import ProductDetails from "./pages/ProductDetails";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
         <Route path="/SignupLogin" element={<SignupLogin />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/productdetails/:prodId" element={<ProductDetails />} />
 
         <Route path="/CatagoryAd" element={<CatagoryAd />} />
         <Route path="/adminlogin" element={<Adminlogin />} />

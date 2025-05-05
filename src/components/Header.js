@@ -33,15 +33,17 @@ const Header = () => {
         }`}
       >
         <div className="flex items-center justify-between px-6 py-4 max-w-7xl mx-auto">
-          {/* Logo */}
+          {/* Logo Text (Typography) */}
           <div className="logo">
-            <img
-              src="./images/logo3.jpg"
-              alt="logo"
-              className="w-36 h-16 object-contain"
-            />
+            <h1
+              className="text-4xl font-bold tracking-wide"
+              style={{ fontFamily: "'Pacifico', cursive", color: "white" }}
+            >
+              Local Market 
+            </h1>
           </div>
 
+          {/* Navigation */}
           <ul className="flex space-x-8 text-lg font-semibold uppercase">
             {navbar.map((nav, index) => (
               <li key={index}>
@@ -57,16 +59,14 @@ const Header = () => {
 
           {/* Icons */}
           <div className="flex items-center space-x-6">
-            <Link
-              className={`text-2xl transform transition-transform duration-300 hover:scale-105 text-white hover:text-gray-300`}
-            >
+            <Link className="text-2xl transform transition-transform duration-300 hover:scale-105 text-white hover:text-gray-300">
               <BiSearch />
             </Link>
 
             <div className="relative">
               <Link
                 onClick={toggleSidebar}
-                className={`text-2xl transform transition-transform duration-300 hover:scale-105 text-white hover:text-gray-300`}
+                className="text-2xl transform transition-transform duration-300 hover:scale-105 text-white hover:text-gray-300"
               >
                 <BiShoppingBag />
               </Link>
@@ -77,7 +77,7 @@ const Header = () => {
 
             <Link
               to="/SignupLogin"
-              className={`text-3xl transform transition-transform duration-300 hover:scale-105 text-white hover:text-gray-300`}
+              className="text-3xl transform transition-transform duration-300 hover:scale-105 text-white hover:text-gray-300"
             >
               <BiUserCircle />
             </Link>

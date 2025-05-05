@@ -43,12 +43,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Footer Bottom Section (Copyright) */}
-        <div className="text-center mt-0 pt-3">
-          <p className="text-black text-lg">
-            © {new Date().getFullYear()} Your Company. All Rights Reserved.
-          </p>
-        </div>
+       
       </div>
     </div>
   );
