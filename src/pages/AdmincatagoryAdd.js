@@ -35,81 +35,86 @@ function AddCategoryForm() {
         console.log("Submitting Category:", payload);
 
         try {
-            const response = await axios.post('http://localhost:3000/addcatagory', payload)
-            const data = response.data
-            console.log(data)
+            const response = await axios.post('http://localhost:3000/addcatagory', payload);
+            const data = response.data;
+            console.log(data);
         } catch (err) {
-            console.log(err)
+            console.log(err);
         }
-        setCategoryName('')
-        setFields([])
+        setCategoryName('');
+        setFields([]);
 
         alert("Category Saved!");
     };
 
     return (
-        <div>
-            <div class='flex items-center justify-center mt-10'>
-
-            <h2 className="text-xl font-bold mb-4">Add New Category</h2>
-            </div>
-        <div className="p-6 max-w-2xl mx-auto bg-white shadow-md rounded-md">
-
-            <form onSubmit={handleSubmit} className="space-y-4">
-                {/* Category Name */}
-                <div>
-                    <label className="block font-medium">Category Name</label>
-                    <input
-                        type="text"
-                        placeholder="e.g., Books, Electronics"
-                        className="w-full border p-2 rounded"
-                        value={categoryName}
-                        onChange={(e) => setCategoryName(e.target.value)}
-                        required
-                    />
+        <div className="min-h-screen bg-gradient-to-r from-gray-800 to-gray-600 text-white flex justify-center items-center p-10">
+            <div className="w-full max-w-lg bg-white shadow-lg rounded-xl p-8">
+                {/* Header */}
+                <div className="flex justify-center items-center mb-8">
+                    <h2 className="text-3xl font-bold text-gray-900">Add New Category</h2>
                 </div>
 
-                {/* Dynamic Fields Section */}
-                <h3 className="font-semibold">Custom Fields (Dynamic)</h3>
-                {fields.map((field, index) => (
-                    <div key={index} className="flex gap-4 items-center">
+                {/* Form */}
+                <form onSubmit={handleSubmit} className="space-y-6">
+                    {/* Category Name */}
+                    <div>
+                        <label className="block font-medium text-gray-700">Category Name</label>
                         <input
                             type="text"
-                            placeholder="Field Name (e.g., Type, Language)"
-                            value={field.fieldName}
-                            onChange={(e) => updateField(index, "fieldName", e.target.value)}
-                            className="border p-2 rounded flex-1"
-                            required
-                        />
-                        <input
-                            type="text"
-                            placeholder="Options (comma separated, e.g., English, Urdu)"
-                            value={field.options}
-                            onChange={(e) => updateField(index, "options", e.target.value)}
-                            className="border p-2 rounded flex-2"
+                            placeholder="e.g., Books, Electronics"
+                            className="w-full border p-3 rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-600"
+                            value={categoryName}
+                            onChange={(e) => setCategoryName(e.target.value)}
                             required
                         />
                     </div>
-                ))}
 
-                {/* Add More Fields Button */}
-                <button
-                    type="button"
-                    onClick={addField}
-                    className="px-2 py-2 bg-black text-white w-11 h-11 shrink-0 grow-0 rounded-full ml-5 mr-5"
-                >
-                    +
-                </button>
+                    {/* Dynamic Fields Section */}
+                    <h3 className="font-semibold text-lg text-gray-700">Custom Fields (Dynamic)</h3>
+                    {fields.map((field, index) => (
+                        <div key={index} className="flex gap-4 items-center">
+                            <input
+                                type="text"
+                                placeholder="Field Name (e.g., Type, Language)"
+                                value={field.fieldName}
+                                onChange={(e) => updateField(index, "fieldName", e.target.value)}
+                                className="border p-3 rounded-md flex-1 text-gray-800"
+                                required
+                            />
+                            <input
+                                type="text"
+                                placeholder="Options (comma separated, e.g., English, Urdu)"
+                                value={field.options}
+                                onChange={(e) => updateField(index, "options", e.target.value)}
+                                className="border p-3 rounded-md flex-2 text-gray-800"
+                                required
+                            />
+                        </div>
+                    ))}
 
-                {/* Submit Button */}
-                <button
-                    type="submit"
-                    className="px-6 py-2 bg-white text-black rounded border border-black"
-                >
-                    Save Category
-                </button>
-            </form>
-        </div>
+                    {/* Add More Fields Button */}
+                    <div className="flex justify-center">
+                        <button
+                            type="button"
+                            onClick={addField}
+                            className="px-4 py-2 bg-black text-white rounded-full shadow-md hover:bg-gray-700 transition duration-300"
+                        >
+                            +
+                        </button>
+                    </div>
+
+                    {/* Submit Button */}
+                    <div className="flex justify-center">
+                        <button
+                            type="submit"
+                            className="px-6 py-3 bg-gradient-to-r from-gray-800 to-gray-700 text-white font-medium rounded-lg text-lg shadow-md border-b border-gray-700 hover:bg-gray-700 transition duration-300"
+                        >
+                            Save Category
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 }
