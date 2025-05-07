@@ -1,12 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { loadStripe } from '@stripe/stripe-js';
 import { Link } from "react-router-dom";
-const stripePromise = loadStripe('pk_test_51RFUtHHOzNr3RhtKYfyceqLji2Pg9ToxkrnLPGgzEz8Yadx6mCZavZqSLzbYiCNiOiSxS229WdXlgr7JssvUJCtt00pPEeMxpd'); // Use your Stripe publishable key
 
 const Cart = () => {
-  const [cartItems, setCartItems] = useState(null)
-  const [email, setEmail] = useState('')
+  const [cartItems, setCartItems] = useState(null);
+  const [email, setEmail] = useState('');
+  const [cartVisible, setCartVisible] = useState(true);  // New state to control cart visibility
 
   const handleCheckout = async () => {
     console.log("checkout");
@@ -20,122 +19,80 @@ const Cart = () => {
         {
           headers: {
             "Content-Type": "application/json",
-            "authorization": `Bearer ${localStorage.getItem('token')}`
+            "authorization": `Bearer ${localStorage.getItem('token')}` // Add your token here
           }
         }
       );
-  
+
       if (result.status === 200) {
-        const stripe = await stripePromise;
-        const session = result.data;
-  
-        if (session && session.url) {
-          window.location.href = session.url; 
-        } else {
-          console.error("Session URL missing:", session);
-        }
+        console.log("Checkout session created:", result.data);
+        setCartVisible(false);  // Hide the cart after checkout is initiated
       } else {
-        console.log('error');
+        console.log('Error during checkout');
       }
     } catch (error) {
-      console.log('error', error);
+      console.log('Error:', error);
     }
   };
-  
+
   useEffect(() => {
     const fetchCart = async () => {
       try {
         const result = await axios.get('http://localhost:3000/getCart',
           {
-            'headers': {
+            headers: {
               "Content-Type": "application/json",
               "authorization": `Bearer ${localStorage.getItem('token')}` // Add your token here
             }
-          })
-        if (result.status == 200) {
-          const cartItemsdata = result.data.data
-          console.log(cartItemsdata)
-          setCartItems(cartItemsdata)
-          console.log('caritems', cartItems)
+          });
+        if (result.status === 200) {
+          const cartItemsData = result.data.data;
+          console.log(cartItemsData);
+          setCartItems(cartItemsData);
         }
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
-    }
-    fetchCart()
-  }, [])
+    };
+    fetchCart();
+  }, []);
+
+  // If cart is not visible, return null (this hides the cart)
+  if (!cartVisible) {
+    return null;
+  }
+
   return (
-    <div class="max-w-6xl mx-auto flex bg-white p-6 rounded-lg shadow-md gap-6">
-      <div class='flex-1'>
-        <h2 class="text-2xl font-bold mb-4">Order Summary</h2>
+    <div className="cart-container">
+      <div className="max-w-6xl mx-auto flex bg-white p-6 rounded-lg shadow-md gap-6">
+        <div className="flex-1">
+          <h2 className="text-2xl font-bold mb-4">Order Summary</h2>
 
-        {cartItems &&
-          cartItems.map((item) => {
-            return (
-              <div class="space-y-4">
-                <div class="flex gap-4 items-center border-b pb-4">
-                  <img src={item.image} alt="Red T-Shirt" class="w-20 h-20 object-cover rounded" />
-                  <div class="flex-1">
-                    <h3 class="font-semibold">{item.title}</h3>
-                    <p class="text-gray-600">{item.description}</p>
-
+          {cartItems && cartItems.length > 0 ? (
+            cartItems.map((item) => (
+              <div className="space-y-4" key={item.id}>
+                <div className="flex gap-4 items-center border-b pb-4">
+                  <img src={item.image} alt={item.title} className="w-20 h-20 object-cover rounded" />
+                  <div className="flex-1">
+                    <h3 className="font-semibold">{item.title}</h3>
+                    <p className="text-gray-600">{item.description}</p>
                   </div>
-                  <div class="text-right">
-                    <p class="text-blue-600 font-semibold">Rs. {item.price}</p>
-
+                  <div className="text-right">
+                    <p className="text-blue-600 font-semibold">Rs. {item.price}</p>
                   </div>
                 </div>
               </div>
-            )
-          })
-        }
+            ))
+          ) : (
+            <div>Your cart is empty.</div>  // Display a message if cart is empty
+          )}
 
-
-      <div class="flex gap-4">
-        <Link to='/' class="w-full bg-gray-200 text-center text-black py-2 rounded">Cancel</Link>
-        <button onClick={handleCheckout} class="w-full bg-gray-900 text-white py-2 rounded">Order</button>
-      </div>
-      </div>
-
-      {/* <div class='flex-1'>
-        <h2 class="text-2xl font-bold mb-4 flex justify-between items-center">
-          Shopping Cart <span class="text-blue-600 text-lg font-semibold">3 Items</span>
-        </h2>
-
-        <div class="bg-gray-50 p-4 rounded-lg mb-4">
-          <div class="flex justify-between mb-2">
-            <span>Subtotal:</span><span class="font-semibold">$360.00</span>
-          </div>
-          <div class="flex justify-between mb-2">
-            <span>Delivery:</span><span class="font-semibold">$0</span>
-          </div>
-          <div class="flex justify-between text-lg font-bold">
-            <span>Total:</span><span>$360.00</span>
+          <div className="flex gap-4">
+            <Link to='/' className="w-full bg-gray-200 text-center text-black py-2 rounded">Cancel</Link>
+            <button onClick={handleCheckout} className="w-full bg-gray-900 text-white py-2 rounded">Proceed to Checkout</button>
           </div>
         </div>
-
-        <div class="space-y-4">
-          <input class="w-full border p-2 rounded" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-          <input class="w-full border p-2 rounded" placeholder="Promo Code" value="Nov 01, 2023" />
-          <input class="w-full border p-2 rounded" placeholder="Address" value="Alpha Plus, Near Raiya Telephone exchange." />
-
-          <div class="space-y-2">
-            <p class="font-semibold">Payment</p>
-            <div class="space-y-2">
-              <label class="block"><input type="radio" name="payment" /> Payment Delivery</label>
-              <label class="block"><input type="radio" name="payment" checked /> Card Payment</label>
-              <label class="block"><input type="radio" name="payment" /> PayPal Payment</label>
-            </div>
-
-            <button class="mt-2 text-blue-600 underline">+ Add Credit Card</button>
-          </div>
-
-          <input class="w-full border p-2 rounded" placeholder="Phone Number" />
-          <input class="w-full border p-2 rounded" placeholder="Expiry Date" value="Dec, 2025" />
-          <input class="w-full border p-2 rounded" placeholder="CVV" value="Rajkot" />
-
-        </div>
-      </div> */}
+      </div>
     </div>
   );
 };

@@ -153,4 +153,4 @@ const SpecificCategoryProduct = () => {
 }
 
 
-export default SpecificCategoryProduct
+export default SpecificCategoryProduct;

@@ -48,4 +48,4 @@ const CatagoryAd = () => {
     )
 }
 
-export default CatagoryAd
+export default CatagoryAd;
