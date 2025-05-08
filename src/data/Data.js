@@ -43,10 +43,10 @@ export const banners = [
 
   
   {
-    banner: "../images/laptop.jpeg",
+    banner: "../images/laptop.jpg",
   },
   {
-    banner: "../images/books.jpeg",
+    banner: "../images/books.jpg",
   },
   
  

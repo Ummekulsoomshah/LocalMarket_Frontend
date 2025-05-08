@@ -297,3 +297,15 @@ code {
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+#chatbot-container, .chatbox, .chat-widget, .chatbot-popup {
+  width: 300px !important;
+  height: 400px !important;
+  font-size: 14px;
+}
+
+/* Resize header and message input */
+.chatbox-header,
+.chatbox-footer {
+  height: 40px;
+  font-size: 13px;
+}

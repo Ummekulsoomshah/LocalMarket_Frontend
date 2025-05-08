@@ -171,10 +171,11 @@ const AddProducts = () => {
               required
             >
               <option value="">Select Category</option>
-              <option value="fooditems">Food Items</option>
+              <option value="books">Books</option>
               <option value="handicrafts">Handicrafts</option>
               <option value="clothes">Clothes</option>
               <option value="cosmetic">Cosmetics</option>
+              <option value="Electronics">Electronics</option>
             </select>
           </div>
 

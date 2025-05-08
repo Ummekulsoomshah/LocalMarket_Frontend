@@ -4,7 +4,7 @@ import { Heading } from "../components/Heading";
 import { blogs } from "../data/Data";
 
 export const Blog = () => {
-  var settings = {
+  const settings = {
     dots: false,
     infinite: false,
     speed: 500,
@@ -12,38 +12,53 @@ export const Blog = () => {
     slidesToScroll: 3,
     autoplay: false,
     autoplaySpeed: 2000,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 640,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (
     <div>
-      <div>
-        <Heading
-          heading={"Locale Market Collections"}
-          subheading={"Latest From Blog"}
-          description={"Local Treasures Unveiled Here "}
-        />
-      </div>
+      <Heading
+        heading="Locale Market Collections"
+        subheading="Latest From Blog"
+        description="Local Treasures Unveiled Here"
+      />
+
       <div className="w-10/12 m-auto">
         <Slider {...settings}>
           {blogs.map((val, key) => (
-            <div className="features flex gap-8 mt-8" key={key}>
-              <div className="overflow-hidden relative m-2 border">
-                <div className="image-container relative">
+            <div className="p-2" key={key}>
+              <div className="border rounded-lg overflow-hidden shadow-md">
+                <div className="relative w-full h-64">
                   <img
                     src={val.img}
-                    alt="womenmenaccessories"
-                    className="w-full h-64 object-cover" // Set height and object-cover for consistent size
+                    alt="blog"
+                    className="w-full h-full object-cover"
                   />
-                  <div className="tag absolute top-0 right-0 z-10">
-                    <p className="bg-red-600 w-12 text-center grid place-items-center text-white p-2 uppercase">
+                  <div className="absolute top-0 right-0">
+                    <p className="bg-red-600 w-12 text-center text-white p-2 text-xs uppercase">
                       {val.tag}
                     </p>
                   </div>
                 </div>
-                <div className="product-details text-center mt-4 mb-4">
-                  <p className="mb-2">{val.short_description}</p>
-                  <p className="mb-2">{val.title}</p>
-                  <p className="text-red-600 text-xl">{val.read_more}</p>
+                <div className="text-center p-4">
+                  <p className="text-gray-600 text-sm mb-1">{val.short_description}</p>
+                  <h3 className="font-semibold mb-1">{val.title}</h3>
+                  <p className="text-red-600 text-sm">{val.read_more}</p>
                 </div>
               </div>
             </div>

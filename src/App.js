@@ -32,8 +32,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/shop" element={<Shop />} />
-        <Route path="/success" element={<Success />} /> 
-        <Route path="/cancel" element={<Cancel />} />   
+    
+        <Route path="/payment/success" element={<Success />} />
+        <Route path="/payment/cancel" element={<Cancel />} />
+       
+           
         <Route path="/contact" element={<Contact />} />
         <Route path="/sellerdashboard" element={<SellerDashboard />} />
         <Route path="/checkout" element={<Checkout />} />

@@ -14,7 +14,7 @@ const Adminlogin = () => {
             apassword
         };
         try {
-            const response = await axios.post('http://localhost:3000/admin/login', admindata);
+            const response = await axios.post('http://localhost:3001/admin/login', admindata);
             if (response.status === 200) {
                 const token = response.data.token;
                 localStorage.setItem('token', token);
@@ -55,7 +55,7 @@ const Adminlogin = () => {
                         />
                     </div>
 
-                    {/* Admin Password */}
+                    {/* word */}
                     <div>
                         <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">Password</label>
                         <input

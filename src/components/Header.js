@@ -39,7 +39,7 @@ const Header = () => {
               className="text-4xl font-bold tracking-wide"
               style={{ fontFamily: "'Pacifico', cursive", color: "white" }}
             >
-              Local Market 
+              Locale Market 
             </h1>
           </div>
 
