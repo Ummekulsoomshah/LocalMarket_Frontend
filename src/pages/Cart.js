@@ -11,7 +11,7 @@ const Cart = () => {
     console.log("checkout");
     try {
       const result = await axios.post(
-        'http://localhost:3000/create-checkout-session',
+        'http://localhost:3002/create-checkout-session',
         {
           cartItems,
           email,
@@ -38,7 +38,7 @@ const Cart = () => {
   useEffect(() => {
     const fetchCart = async () => {
       try {
-        const result = await axios.get('http://localhost:3000/getCart',
+        const result = await axios.get('http://localhost:3002/getCart',
           {
             headers: {
               "Content-Type": "application/json",
