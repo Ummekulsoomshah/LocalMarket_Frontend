@@ -30,7 +30,7 @@ const AdminDashboard = () => {
             </h1>
         </div>
         <Link
-            to="/catagAddadmin"
+            to="/categAddadmin"
             className="bg-gray-800 hover:to-purple-700 text-white font-semibold rounded-lg text-lg px-6 py-3 shadow-lg transition duration-300"
         >
             Add Category

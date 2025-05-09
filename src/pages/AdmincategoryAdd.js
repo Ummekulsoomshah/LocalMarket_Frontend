@@ -35,7 +35,7 @@ function AddCategoryForm() {
         console.log("Submitting Category:", payload);
 
         try {
-            const response = await axios.post('http://localhost:3002/addcatagory', payload);
+            const response = await axios.post('http://localhost:3002/addcategory', payload);
             const data = response.data;
             console.log(data);
         } catch (err) {

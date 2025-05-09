@@ -14,10 +14,10 @@ import SellerDashboard from "./pages/SellerDashboard";
 import AddProducts from "./pages/AddProduct";
 import AddReview from "./pages/AddReview";
 import Payment from "./pages/Payment";
-import CatagoryAd from "./pages/CatagoryAd";
+import CategoryAd from "./pages/CategoryAd";
 import Adminlogin from "./pages/Adminlogin";
 import AdminDashboard from "./pages/AdminDashboard";
-import AdmincatagoryAdd from "./pages/AdmincatagoryAdd";
+import AdmincategoryAdd from "./pages/AdmincategoryAdd";
 import ItemaddPage from "./pages/ItemaddPage";
 import AboutPage from "./pages/AboutPage";
 import Chatbot from "./components/Chatbot"; 
@@ -46,12 +46,12 @@ function App() {
         <Route path="/payment" element={<Payment />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/productdetails/:prodId" element={<ProductDetails />} />
-
-        <Route path="/CatagoryAd" element={<CatagoryAd />} />
+        <Route path="/add-product/:categoryName/:categoryId" element={<AddProducts />} />
+        <Route path="/CategoryAd" element={<CategoryAd />} />
         <Route path="/adminlogin" element={<Adminlogin />} />
         <Route path="/AdminDashboard" element={<AdminDashboard />} />
-        <Route path="/catagAddadmin" element={<AdmincatagoryAdd />} />
-        <Route path="/add-product/:catagory" element={<ItemaddPage />} />
+        <Route path="/categAddadmin" element={<AdmincategoryAdd />} />
+        {/* <Route path="/add-product/:category" element={<ItemaddPage />} /> */}
         <Route path="/*" element={<NotFoundPage />} /> 
       </Routes>
       <Footer />
