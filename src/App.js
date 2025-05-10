@@ -26,6 +26,7 @@ import SpecificCategoryProduct from "./pages/SpecificCategoryProduct";
 import ProductDetails from "./pages/ProductDetails";
 import {ToastContainer ,toast} from 'react-toastify'
 import Signup from './pages/Signup'
+import Checkout from "./pages/Checkout";
 function App() {
   return (
     <div>
@@ -53,6 +54,7 @@ function App() {
           <Route path='/success' element={<Success/>}/>
           <Route path='/cancel' element={<Cancel/>}/>
           <Route path="/sellerDashboard" element={<SellerDashboard />} />
+          <Route path="/checkout" element={<Checkout/>}/>
         </Routes>
         <Footer />
       </Router>
