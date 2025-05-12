@@ -107,7 +107,7 @@ const SpecificCategoryProduct = () => {
             {products.map((product) => {
                 return (
                     <div class="w-full max-w-sm bg-white border border-gray-200 shadow-sm dark:bg-gray-800 dark:border-gray-700">
-                        <Link to={`/ProductDetails/${product.id}`}>
+                        <Link to={`/ProductDetails/${categId}/${product.id}`}>
                             <img class=" rounded-t-lg w-full h-64 object-cover mb-3" src={product.image} alt="product image" />
                         </Link>
                         <div class="px-3 pb-3">

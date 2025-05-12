@@ -56,7 +56,6 @@ code {
   line-height: 66px;
 }
 .banner-items button,
-.bg-design-cover button,
 .addtocart button,
 .size-btn button,
 .mwa button:hover {
@@ -99,6 +98,7 @@ code {
   background-image: url(./../public/images/bg_testi.jpg);
   padding: 6rem 0;
   position: relative;
+  top: 20px;
 }
 .bg-image-overlay {
   position: absolute;
@@ -114,6 +114,8 @@ code {
   background-repeat: no-repeat;
   padding: 6rem 0;
   position: relative;
+  top: 30px;
+
 }
 
 /* Modal Overlay */
@@ -214,4 +216,70 @@ code {
 
 .chatbot-response p {
   margin: 0;
+}
+
+.chatbot-controls{
+  margin-left: 230px;
+  display: flex;
+  gap: 6px;
+}
+/* src/pages/Success.css */
+
+.success-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f4f4f9;
+  font-family: Arial, sans-serif;
+}
+
+.success-message {
+  text-align: center;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+}
+
+.success-message h1 {
+  color: #4CAF50;
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.success-message p {
+  font-size: 1.1em;
+  color: #333;
+}
+
+.order-details {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.order-details p {
+  font-size: 1.1em;
+  margin: 5px 0;
+}
+
+.order-details strong {
+  color: #333;
+}
+
+.back-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.back-button:hover {
+  background-color: #45a049;
 }

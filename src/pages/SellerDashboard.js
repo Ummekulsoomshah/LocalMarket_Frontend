@@ -1,11 +1,61 @@
-import axios from "axios";
+
 import React, { useEffect, useState } from "react";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  PieChart,
+  Pie,
+  Cell,
+  Legend,
+  ResponsiveContainer,
+  CartesianGrid,
+} from "recharts";
+import { Card, CardContent } from "./SellerCard";
+import axios from 'axios'
 import { Link } from "react-router-dom";
 
-const SellerDashboard = () => {
-  const [products, setProducts] = useState('')
-  const [orders, setOrders] = useState('')
-  const [pendingOrders, setPendingOrders] = useState('')
+
+// Data
+const barData = [
+  { name: "Jan", Statistics: 2000 },
+  { name: "Feb", Statistics: 3000 },
+  { name: "Mar", Statistics: 4000 },
+  { name: "Apr", Statistics: 5000 },
+  { name: "May", Statistics: 6000 },
+  { name: "Jun", Statistics: 7000 },
+  { name: "Jul", Statistics: 8000 },
+  { name: "Aug", Statistics: 6500 },
+  { name: "Sep", Statistics: 7200 },
+  { name: "Oct", Statistics: 8000 },
+  { name: "Nov", Statistics: 8500 },
+  { name: "Dec", Statistics: 9000 },
+];
+
+
+const pieColors = ["#10B981", "#F43F5E", "#F59E0B"];
+
+const recentOrders = [
+  { id: "#12345", status: "Completed" },
+  { id: "#12346", status: "Pending" },
+  { id: "#12347", status: "Cancelled" },
+
+];
+
+const statusColor = {
+  Completed: "text-green-600",
+  Pending: "text-yellow-500",
+  Cancelled: "text-red-600",
+};
+
+export default function SellerDashboard() {
+  const [totalProducts, settotalProducts] = useState('')
+  const [totalPlacedOrders, settotalPlacedOrders] = useState('')
+  const [totalRevenew, settotalRevenew] = useState('')
+  const [totalpendingOrders, settotalpendingOrders] = useState('')
+  const [todaysSales, setTodaysSales] = useState([]);
 
   useEffect(() => {
     const fetchSellerStats = async () => {
@@ -16,79 +66,140 @@ const SellerDashboard = () => {
             "authorization": `Bearer ${localStorage.getItem('token')}`
           }
         })
+        const data = result.data
+        console.log(data)
+        settotalProducts(data.result.totalProducts)
+        settotalPlacedOrders(data.result.totalPlacedOrders)
+        settotalRevenew(data.result.totalRevenew)
+        settotalpendingOrders(data.result.totalpendingOrders)
+        setTodaysSales(data.result.monthlySales)
 
       } catch (error) {
-
+        console.log(error)
       }
     }
     fetchSellerStats()
   }, [])
-
+  const pieData = [
+    { name: "Products", value: totalProducts },
+    { name: "Orders", value: totalPlacedOrders },
+    { name: "Revenue", value: totalRevenew },
+  ];
+  console.log('todaysSales',todaysSales)
   return (
-    <div className="min-h-screen p-10">
-      {/* Header */}
+    <div className="p-6 bg-green-50 min-h-screen">
+
       <div className="flex justify-between items-center mb-10">
         <h1 className="text-4xl font-bold text-black">Seller Dashboard</h1>
         <Link
-          to='/addproducts'
-          className="text-black bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none font-medium rounded-lg text-lg px-6 py-3"
+          to="/CatagoryAd"
+          className="bg-gradient-to-r from-gray-800 to-gray-700 text-white font-medium rounded-lg text-lg px-6 py-3 shadow-md border-b border-gray-700"
         >
           Add Product
         </Link>
       </div>
 
-      {/* Stats Section - Professional Square Blocks */}
-      <div className="grid grid-cols-4 gap-8">
-        {[
-          { title: "Total Products", value: 'totalBusiness' },
-          { title: "Total Orders", value: 'totalProducts' },
-          { title: "Total Pending Orders", value: "789" },
-          { title: "Total Revenue", value: '1234K' },
-        ].map((stat, index) => (
-          <div key={index} className="bg-yellow-400 text-black text-center p-8 rounded-xl shadow-lg">
-            <h2 className="text-2xl font-semibold">{stat.title}</h2>
-            <p className="text-4xl font-bold mt-3">{stat.value}</p>
-          </div>
-        ))}
+      {/* Summary Cards */}
+      <div className="flex flex-wrap justify-between gap-4 mb-8">
+        <Card className="flex-1 min-w-[220px]">
+          <CardContent className="text-center">
+            <p className="text-gray-700">Total Products</p>
+            <p className="text-2xl font-bold text-blue-600">{totalProducts}</p>
+          </CardContent>
+        </Card>
+        <Card className="flex-1 min-w-[220px]">
+          <CardContent className="text-center">
+            <p className="text-gray-700">Total Orders</p>
+            <p className="text-2xl font-bold text-green-600">{totalPlacedOrders}</p>
+          </CardContent>
+        </Card>
+        <Card className="flex-1 min-w-[220px]">
+          <CardContent className="text-center">
+            <p className="text-gray-700">Pending Orders</p>
+            <p className="text-2xl font-bold text-yellow-600">{totalpendingOrders}</p>
+          </CardContent>
+        </Card>
+        <Card className="flex-1 min-w-[220px]">
+          <CardContent className="text-center">
+            <p className="text-gray-700">Total Revenue</p>
+            <p className="text-2xl font-bold text-red-600">PKR. {totalRevenew}</p>
+          </CardContent>
+        </Card>
       </div>
 
-      {/* Graphs Section - Custom Bar Chart & Line Chart */}
-      <div className="grid grid-cols-2 gap-8 mt-12">
-        {/* Bar Chart (Custom CSS-Based) */}
-        <div className="bg-white p-6 rounded-xl shadow-lg">
-          <h2 className="text-xl font-bold text-black mb-4">Monthly Sales</h2>
-          <div className="relative w-full h-40 bg-gray-200 flex items-end">
-            {[40, 60, 90, 70, 100, 50].map((value, index) => (
-              <div
-                key={index}
-                className="w-1/6 mx-1 bg-yellow-500"
-                style={{ height: `${value}%` }}
-              ></div>
-            ))}
-          </div>
-          <div className="flex justify-between text-black mt-2">
-            <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span>
-          </div>
-        </div>
+      {/* Charts and Orders */}
+      <div className="flex flex-wrap gap-6 mb-8">
+        {/* Bar Chart */}
+        <Card className="flex-1 min-w-[300px]">
+          <CardContent>
+            <h2 className="font-semibold text-lg mb-3 text-center text-black">
+              This Month's
+            </h2>
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart data={todaysSales}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="days of month" />
+                <YAxis />
+                <Tooltip />
+                <Bar dataKey="sales" fill="#10B981" radius={[4, 4, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </CardContent>
 
-        {/* Line Chart (Custom CSS-Based) */}
-        <div className="bg-white p-6 rounded-xl shadow-lg">
-          <h2 className="text-xl font-bold text-black mb-4">Orders Growth</h2>
-          <svg viewBox="0 0 400 150" className="w-full h-40">
-            <polyline
-              fill="none"
-              stroke="yellow"
-              strokeWidth="3"
-              points="20,130 70,100 120,60 170,80 220,50 270,40 320,30"
-            />
-          </svg>
-          <div className="flex justify-between text-black mt-2">
-            <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span>
-          </div>
-        </div>
+        </Card>
+
+        {/* Donut Pie Chart */}
+        <Card className="flex-1 min-w-[300px]">
+          <CardContent>
+            <h2 className="font-semibold text-lg mb-3 text-center text-black">
+              Sales Distribution
+            </h2>
+            <ResponsiveContainer width="100%" height={300}>
+              <PieChart>
+                <Pie
+                  data={pieData}
+                  dataKey="value"
+                  nameKey="name"
+                  cx="50%"
+                  cy="50%"
+                  outerRadius={80}
+                  innerRadius={40}
+                  label
+                >
+                  {pieData.map((entry, index) => (
+                    <Cell
+                      key={`cell-${index}`}
+                      fill={pieColors[index % pieColors.length]}
+                    />
+                  ))}
+                </Pie>
+                <Tooltip />
+                <Legend layout="horizontal" verticalAlign="bottom" align="center" />
+              </PieChart>
+            </ResponsiveContainer>
+          </CardContent>
+        </Card>
+
+        {/* Recent Orders */}
+        <Card className="flex-1 min-w-[300px]">
+          <CardContent>
+            <h2 className="font-semibold text-lg mb-3 text-center text-black">
+              Recent Orders
+            </h2>
+            <ul className="space-y-3">
+              {recentOrders.map((order) => (
+                <li
+                  key={order.id}
+                  className="flex justify-between text-sm font-medium border-b pb-2"
+                >
+                  <span>{order.id}</span>
+                  <span className={statusColor[order.status]}>{order.status}</span>
+                </li>
+              ))}
+            </ul>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
-};
-
-export default SellerDashboard;
+}

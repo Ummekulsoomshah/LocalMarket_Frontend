@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import PageHeading from "../components/PageHeading";
 
@@ -38,27 +39,27 @@ const AddReview = () => {
   };
 
   return (
-    <div className="px-4 py-8">
+    <div className="px-6 py-12 bg-gray-100 font-poppins">
       <PageHeading home="Home" pagename="Add Review" />
-      <div className="mx-auto max-w-screen-md bg-white rounded-lg shadow-lg p-6">
-        <h2 className="mb-4 text-4xl font-extrabold text-center text-gray-900">
+      <div className="mx-auto max-w-screen-md rounded-lg shadow-lg p-8 bg-white border-2 border-gray-300">
+        <h2 className="mb-6 text-3xl font-bold text-center text-gray-800">
           Add Review
         </h2>
         <p className="mb-6 text-lg text-center text-gray-600">
           Share your thoughts and feedback on the product.
         </p>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label
               htmlFor="name"
-              className="block mb-1 text-sm font-medium text-gray-900"
+              className="block text-sm font-bold text-gray-800"
             >
               Your Name
             </label>
             <input
               type="text"
               id="name"
-              className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full py-2 px-3"
+              className="mt-2 w-full p-2 text-sm border border-gray-300 rounded-lg text-gray-700 placeholder-gray-400 focus:ring-none focus:border-gray-500 shadow-md"
               placeholder="Enter your name"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -68,25 +69,24 @@ const AddReview = () => {
           <div>
             <label
               htmlFor="review"
-              className="block mb-1 text-sm font-medium text-gray-900"
+              className="block text-sm font-bold text-gray-800"
             >
               Your Review
             </label>
             <textarea
               id="review"
-              rows="6"
-              className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full py-2 px-3"
+              rows="4"  // Reduced height by changing rows
+              className="mt-2 w-full p-2 text-sm border border-gray-300 rounded-lg text-gray-700 placeholder-gray-400 focus:ring-none focus:border-gray-500 shadow-md"
               placeholder="Write your review here..."
               value={review}
               onChange={(e) => setReview(e.target.value)}
               required
             ></textarea>
           </div>
-          <div>
+          <div className="flex justify-center">
             <button
               type="submit"
-              style={{ width: "200px", height: "50px", marginLeft: "34rem" }}
-              className="py-3 px-4 bg-green-600 hover:bg-green-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="py-3 px-8 bg-gray-600 hover:bg-gray-700 text-white rounded-lg text-lg focus:outline-none focus:ring-none focus:border-gray-500"
             >
               Submit Review
             </button>

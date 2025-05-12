@@ -1,9 +1,11 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const ProductDetails = () => {
     const { prodId } = useParams();
+    const {categId}=useParams()
     const [product, setProduct] = useState(null)
     useEffect(() => {
         const fetchProduct = async () => {
@@ -22,6 +24,29 @@ const ProductDetails = () => {
         }
         fetchProduct()
     }, [])
+    const handleCart = async (prodId) => {
+        try {
+            const result = await axios.post(`http://localhost:3000/addToCart/${prodId}`, { categId },
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "authorization": `Bearer ${localStorage.getItem('token')}`
+                    }
+                }
+            )
+            if (result.status == 200) {
+                toast.success("Product added into cart !", {
+                    position: "top-right"
+                })
+            } else {
+                toast.error("Error into cart !", {
+                    position: "top-right",
+                })
+            }
+        } catch (error) {
+            console.log('error', error)
+        }
+    }
     if (!product) {
         return (
             <div class="flex justify-center items-center m-5 gap-3 p-4">
@@ -45,49 +70,48 @@ const ProductDetails = () => {
         )
     }
     return (
-        <div className='grid grid-cols-2 gap-2 w-auto-full m-10'>
-            <div className="row-span-3 max-w-sm h-96 bg-gray-200 justify-center items-center border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-                <div className="flex justify-center items-center h-full">
-                    <img className="rounded-t-lg h-full object-cover" src={product.image} alt="Product" />
-                </div>
+        
+        <div class="flex md:flex-row gap-8 p-6 bg-white rounded-lg shadow-md max-w-6xl mx-auto">
+            <div class="flex-shrink-0 w-1/2 md:w-1/2">
+                <img src={product.image} alt="Fullway Tires HP108" class="rounded-lg w-full object-contain" />
             </div>
 
-            <div className="relative flex flex-col bg-white shadow-sm border border-slate-200 rounded-lg w-96">
-                <div className="p-4">
-                    <h5 className="mb-2 text-slate-800 text-xl font-semibold">
-                        Rs. {product.price}
-                    </h5>
-                    <p className="text-slate-600 leading-normal font-light">
-                        {product.title}
-                    </p>
+            <div class="flex flex-col w-full md:w-1/2 space-y-4">
+                <h1 class="text-2xl font-semibold">{product.title}</h1>
+
+                <div class="flex items-center text-sm text-gray-600">
+                    <span class="text-yellow-500 mr-1">★★★★★</span>
+                    <a href="#" class="underline hover:text-blue-600">4.84 1454 product ratings</a>
                 </div>
-            </div>
-            <div className="relative flex flex-col bg-white shadow-sm border border-slate-200 rounded-lg w-96">
-                <div className="p-4">
-                    <h5 className="mb-2 text-slate-800 text-xl font-semibold">
-                        Details
-                    </h5>
-                    <div className=' grid grid-cols-2'>
-                        {Object.entries(product.fields).map(([key, value], index) => (
-                            <div class='flex gap-2 bg-gray-100 pt-2 pb-2 p-2 border rounded-lg justify-between' key={index}>
-                                <p className="text-sm">{key}</p>
-                                <p className="text-sm">{value}</p>
-                            </div>
-                        ))}
-                    </div>
+
+                <div class="text-sm text-blue-600">
+                    <a href="#" class="hover:underline">Priority_Tire (485676) - 99.6% positive feedback</a>
                 </div>
-            </div>
-            <div className="relative flex flex-col bg-white shadow-sm border border-slate-200 rounded-lg w-96">
-                <div className="p-4">
-                    <h5 className="mb-2 text-slate-800 text-xl font-semibold">
-                        Description
-                    </h5>
-                    <p className="text-slate-600 leading-normal font-light">
-                        {product.description}
-                    </p>
+
+                <div class="text-3xl font-bold text-gray-800">PKR. {product.price}</div>
+
+                <div class="text-sm text-gray-600">
+                    <p><strong>Returns:</strong> 60 days returns. Buyer pays for return shipping. If you use an localmarket shipping label, it will be deducted from your refund amount.</p>
                 </div>
+                <div class="text-sm">
+                    {Object.entries(product.fields).map(([key, value], index) => (
+
+                        <p><strong>{key}:</strong> {value}</p>
+                    ))}
+                </div>
+
+                <div class="text-sm text-gray-700">
+                    <p>{product.description}</p>
+                </div>
+
+                <a href="#" class="text-blue-600 underline text-sm hover:text-blue-800">See full description</a>
+
+                <button onClick={() => handleCart(product.id)} class="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg text-lg">
+                    Buy It Now
+                </button>
             </div>
         </div>
+
     )
 }
 

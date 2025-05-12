@@ -1,17 +1,11 @@
-
-
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import {
-  Home,
-  Shop,
-  Cart,
-  Contact,
-  NotFoundPage,
-  Header,
-  Footer,
-  Login,
- 
-} from "./pages/index";
+
+import Home from "./pages/Home";
+import Contact from "./pages/Contact";
+import NotFoundPage from "./pages/NotFoundPage";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Login from "./pages/Login"
 import SellerDashboard from "./pages/SellerDashboard";
 import Success from "./pages/Success";
 import Cancel from "./pages/Cancel"
@@ -27,6 +21,9 @@ import ProductDetails from "./pages/ProductDetails";
 import {ToastContainer ,toast} from 'react-toastify'
 import Signup from './pages/Signup'
 import Checkout from "./pages/Checkout";
+import Cart from "./pages/Cart";
+import AboutPage from "./pages/AboutPage";
+import Shop from "./pages/Shop"
 function App() {
   return (
     <div>
@@ -35,7 +32,6 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/shop" element={<Shop />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/addreview" element={<AddReview />} />
@@ -48,13 +44,15 @@ function App() {
           <Route path="/catagAddadmin" element={<AdmincatagoryAdd/>}/>
           <Route path="/add-product/:catagory/:categId" element={<ItemaddPage/>}/>
           <Route path="/ProductDisplay/:insertId" element={<ProductDisplay/>}/>
-          <Route path="/ProductDetails/:prodId" element={<ProductDetails/>}/>
+          <Route path="/ProductDetails/:categId/:prodId" element={<ProductDetails/>}/>
           <Route path='/SpecificCategoryProduct/:categId' element={<SpecificCategoryProduct/>}/>
           <Route path='/cart' element={<Cart/>}/>
           <Route path='/success' element={<Success/>}/>
           <Route path='/cancel' element={<Cancel/>}/>
           <Route path="/sellerDashboard" element={<SellerDashboard />} />
           <Route path="/checkout" element={<Checkout/>}/>
+          <Route path="/about" element={<AboutPage/>}/>
+          <Route path="/shop" element={<Shop/>}/>
         </Routes>
         <Footer />
       </Router>

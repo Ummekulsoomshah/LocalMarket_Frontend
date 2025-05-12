@@ -28,25 +28,24 @@ const CategoryList = () => {
     }, [])
     return (
         <div className="flex flex-col justify-center items-center">
-        <div className="flex justify-center items-center">
-            <h1 className="text-2xl font-bold text-black">Categories</h1>
+            <div className="flex justify-center items-center">
+                <h1 className="text-2xl font-bold text-black">Categories</h1>
+            </div>
+
+            <ul className="flex flex-wrap justify-center items-center gap-3 px-4 py-2">
+                {catagorieslist.map((catagory) => {
+                    return (
+                        <div key={catagory.name} onClick={() => navigate(`/SpecificCategoryProduct/${catagory.id}`)} class="flex flex-col items-center justify-center p-4 rounded-lg bg-gray-100 shadow-md">
+                            <div class="w-48 h-48 rounded-full bg-white flex items-center justify-center mb-4">
+                                <img class="w-full h-full rounded-full bg-cover bg-center" src={catagory.image} />
+                            </div>
+                            <h2 class="text-xl font-semibold text-gray-800">{catagory.name}</h2>
+                        </div>
+                    );
+                })}
+            </ul>
         </div>
 
-        <ul className="flex flex-wrap justify-center items-center gap-3 px-4 py-2">
-            {catagorieslist.map((catagory) => {
-                return (
-                    <li
-                        key={catagory.name}
-                        className="p-2 border cursor-pointer hover:bg-[#b0c4de] hover:border-none hover:rounded-full border-black flex justify-center items-center text-1xl bg-white rounded-xl shadow-lg text-black w-40"
-                        onClick={() => navigate(`/SpecificCategoryProduct/${catagory.id}`)}
-                    >
-                        <div>{catagory.name}</div>
-                    </li>
-                );
-            })}
-        </ul>
-    </div>
-    
     )
 }
 

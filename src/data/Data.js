@@ -11,39 +11,40 @@ export const navbar = [
     path: "/about",
     nav: "About",
   },
-  {
-    id: 3,
-    path: "/shop",
-    nav: "Shop",
-  },
+ 
   {
     id: 4,
-    path: "/cart",
-    nav: "Cart",
-  },
-  {
-    id: 5,
     path: "/contact",
     nav: "Contact",
   },
-  {
-    id: 6,
-    path: "/Signup",
-    nav: "Singup",
-  },
-  {
-    id: 7,
-    path: "/Login",
-    nav: "Login",
-  },
+  // {
+  //   id: 5,
+  //   path: "/Signup",
+  //   nav: "Signup",
+  // },
+  // {
+  //   id: 6,
+  //   path: "/Login",
+  //   nav: "Login",
+  // },
 ];
 
 export const banners = [
-
+ 
  
   {
     banner: "../images/2.png",
   },
+
+  
+  {
+    banner: "../images/laptop.jpeg",
+  },
+  {
+    banner: "../images/books.jpeg",
+  },
+  
+ 
   {
     banner: "../images/3.png",
   },
@@ -71,7 +72,7 @@ export const bannar_down = [
   },
 ];
 
-export const feateures = [
+export const features = [
   {
     id: 1,
     img: "../images/pink1.png",
@@ -92,7 +93,7 @@ export const feateures = [
     btn: "Select Options",
     category: "Crafts",
     title: "Shop",
-    short_description: "Rope Baskets + Bowls, Four Sizes",
+    short_description: "Rope Baskets & Bowls",
     rating: Array(5).fill({ icon: <IoStarOutline /> }),
     price: "129.00",
     description:
@@ -105,130 +106,12 @@ export const feateures = [
     btn: "Select Options",
     category: "Crafts",
     title: "Shop",
-    short_description: "Hand Embroidered Cactus Pillow Cover",
+    short_description: "Hand Embroidered Pillow",
     rating: Array(5).fill({ icon: <IoStarOutline /> }),
     price: "129.00",
     description:
       "The pattern is hand embroidered & hand painted to give a dimension by me in my smoke free studio. The pillow cover has an envelope closure. Overlocked inner seams. Fabrics used for the pillow/cushion cover are linen and rayon blend and are all pre-washed before stitching (for shrinkage).",
   },
-  {
-    id: 4,
-    img: "../images/kurti.png",
-    tag: "new",
-    btn: "Select Options",
-    category: "Womens",
-    title: "Shop",
-    short_description: "Elegant Kurtis",
-    rating: Array(5).fill({ icon: <IoStarOutline /> }),
-    price: "129.00",
-    description:
-      "Indulge in timeless elegance with our exquisite collection of Kurtis. Crafted with the finest fabrics and attention to detail, these pieces are perfect for any occasion. Elevate your wardrobe with effortless style. Shop now!",
-  },
-  {
-    id: 5,
-    img: "../images/handicraft.jpg",
-    tag: "new",
-    btn: "Select Options",
-    category: "Handicraft",
-    title: "Handicraft Art",
-    short_description: "Handcrafted Wooden Wall Art",
-    rating: Array(5).fill({ icon: <IoStarOutline /> }),
-    price: "89.00",
-    description:
-      "Add a touch of artisanal elegance to your home with our handcrafted wooden wall art. Each piece is carefully crafted by skilled artisans, offering unique designs to enhance your space. Perfect for any modern or rustic decor.",
-  },
-  {
-    id: 6,
-    img: "../images/menkurta.jpg",
-    tag: "new",
-    btn: "Select Options",
-    category: "Mens",
-    title: "Shop",
-    short_description: "Men's Traditional Kurta",
-    rating: Array(5).fill({ icon: <IoStarOutline /> }),
-    price: "59.00",
-    description:
-      "Embrace the timeless charm of traditional men's kurtas. Made from high-quality cotton fabric, these kurtas offer comfort and style for any occasion. Pair with your favorite trousers for a refined look.",
-  },
-  {
-    id: 7,
-    img: "../images/jeans.jpeg",
-    tag: "new",
-    btn: "Select Options",
-    category: "Mens",
-    title: "Shop",
-    short_description: "Classic Slim Fit Jeans",
-    rating: Array(5).fill({ icon: <IoStarOutline /> }),
-    price: "69.00",
-    description:
-      "Discover the perfect pair of slim fit jeans, combining comfort and style. Crafted with premium denim, these jeans are versatile enough for both casual and semi-formal occasions. A wardrobe essential.",
-  },
-  {
-    id: 8,
-    img: "../images/womenkurti.jpeg",
-    tag: "new",
-    btn: "Select Options",
-    category: "Womens",
-    title: "Shop",
-    short_description: "Floral Printed Kurti",
-    rating: Array(5).fill({ icon: <IoStarOutline /> }),
-    price: "79.00",
-    description:
-      "Enhance your elegance with this beautifully printed floral kurti. Made from soft cotton fabric, it's perfect for day-to-night wear. With a flattering cut and vibrant design, this kurti is a must-have in your collection.",
-  },
-  
-  {
-    id: 9,
-    img: "../images/ponds.jpg",
-    tag: "new",
-    btn: "Select Options",
-    category: "Cosmetics",
-    title: "Pond's Facewash",
-    short_description: "Pond's Pure Detox Facewash",
-    rating: Array(5).fill({ icon: <IoStarOutline /> }),
-    price: "19.00",
-    description:
-      "Refresh and rejuvenate your skin with Pond's Pure Detox Facewash. Infused with activated charcoal, this facewash deeply cleanses your skin, removing dirt and impurities for a fresh and radiant complexion.",
-  },
-  {
-    id: 10,
-    img: "../images/lipstick.png",
-    tag: "new",
-    btn: "Select Options",
-    category: "Cosmetics",
-    title: "L'Oréal Lipstick",
-    short_description: "L'Oréal Paris Color Riche Lipstick",
-    rating: Array(5).fill({ icon: <IoStarOutline /> }),
-    price: "25.00",
-    description:
-      "Add a pop of color to your lips with L'Oréal Paris Color Riche Lipstick. This rich, creamy lipstick provides long-lasting hydration and vibrant color, available in a variety of shades to suit every occasion.",
-  },
-  {
-    id: 11,
-    img: "../images/base.jpeg",
-    tag: "new",
-    btn: "Select Options",
-    category: "Cosmetics",
-    title: "Makeup Base",
-    short_description: "Flawless Makeup Base Primer",
-    rating: Array(5).fill({ icon: <IoStarOutline /> }),
-    price: "30.00",
-    description:
-      "Create a smooth canvas for your makeup with this flawless makeup base primer. Designed to minimize pores and smooth out your skin, it provides a perfect foundation for long-lasting makeup.",
-  },
-  {
-    id: 12,
-    img: "../images/eyeshades.jpeg",
-    tag: "new",
-    btn: "Select Options",
-    category: "Cosmetics",
-    title: "Eyeshadow Makeup",
-    short_description: "Vibrant Eyeshadow Palette",
-    rating: Array(5).fill({ icon: <IoStarOutline /> }),
-    price: "35.00",
-    description:
-      "Unleash your creativity with this vibrant eyeshadow palette. Featuring a mix of matte and shimmer shades, this palette allows you to create stunning looks for both day and night, perfect for any makeup enthusiast.",
-  }
 
 ];
 
@@ -260,84 +143,42 @@ export const reviews = [
     customer_name: "John Smith",
     position: "Software Engineer",
   },
-];
+  {
+    title: "Customer Review",
+    description:
+      "I recently purchased a few items from here, and I'm thrilled with my purchase! The quality is fantastic, and the prices are reasonable. Highly recommend!",
+    customer_img: "../images/testi2.jpg",
+    customer_name: "Emily Parker",
+    position: "Teacher",
+  },
 
+];
 export const blogs = [
   {
     id: 1,
-    img: "../images/10-home_default.jpg",
+    img: "../images/eyeshades.jpeg",
     tag: "8 May",
-    title: "Shop",
-    short_description: "Lorem ipsum dolor",
-    read_more: "Read More",
+    short_description: "Discover fresh ideas to transform your living space.",
   },
   {
     id: 2,
-    img: "../images/11-home_default.jpg",
-    tag: "8 May",
-    title: "Shop",
-    short_description: "Lorem ipsum dolor",
-    read_more: "Read More",
+    img: "../images/kurti.png",
+    tag: "8 Aug",
+    short_description: "Explore the latest trends in outfits and comfort.",
   },
   {
     id: 3,
     img: "../images/12-home_default.jpg",
     tag: "8 May",
-    title: "Shop",
-    short_description: "Lorem ipsum dolor",
-    read_more: "Read More",
+    short_description: "Add a touch of elegance with minimalistic setups.",
   },
   {
     id: 4,
-    img: "../images/13-home_default.jpg",
-    tag: "8 May",
-    title: "Shop",
-    short_description: "Lorem ipsum dolor",
-    read_more: "Read More",
-  },
-  // {
-  //   id: 5,
-  //   img: "../images/kurti.jpg",
-  //   tag: "8 May",
-  //   title: "Shop",
-  //   short_description: "Lorem ipsum dolor",
-  //   read_more: "Read More",
-  // },
-  // {
-  //   id: 6,
-  //   img: "../images/14-home_default.jpg",
-  //   tag: "8 May",
-  //   title: "Shop",
-  //   short_description: "Lorem ipsum dolor",
-  //   read_more: "Read More",
-  // },
-];
-
-export const footer = [
-
-  {
-    id: 3,
-    header: "Contact Us",
-    content1: "About Us",
-    content2: "Addresses",
-  
-  },
-  {
-    id: 4,
-    header: "Transactions",
-   
-    content1: "Order",
-    content2: "Payments",
-    content3: "Suppliers",
-  },
-  {
-    id: 5,
-    header: "Subscribe to get important updates",
-    content1: "",
-
+    img: "../images/11-home_default.jpg",
+    tag: "10 Mar",
+    short_description: "Smart design tips to refresh your home this season.",
   },
 ];
-
 
 export const chatbot = [
   {
@@ -647,3 +488,166 @@ export const chatbot = [
   },
 ];
 
+
+
+//shop
+export const shop = [
+  {
+    id: 1,
+    img: "../images/pink1.png",
+    tag: "new",
+    btn: "Select Options",
+    category: "JEWELLERY",
+    title: "Shop",
+    short_description: "Leather Collar Necklace",
+    rating: Array(5).fill({ icon: <IoStarOutline /> }),
+    price: "129.00",
+    description:
+      "Discover exquisite handmade jewelry at the best prices. Elevate your style with our unique pieces, meticulously crafted for you. Explore now!",
+  },
+  {
+    id: 2,
+    img: "../images/basket.png",
+    tag: "new",
+    btn: "Select Options",
+    category: "Crafts",
+    title: "Shop",
+    short_description: "Rope Baskets + Bowls, Four Sizes",
+    rating: Array(5).fill({ icon: <IoStarOutline /> }),
+    price: "129.00",
+    description:
+      "Add charm to your space with our handmade rope baskets and bowls, available in four sizes. Elevate your home decor with these versatile essentials. Shop now!",
+  },
+  {
+    id: 3,
+    img: "../images/cover.png",
+    tag: "new",
+    btn: "Select Options",
+    category: "Crafts",
+    title: "Shop",
+    short_description: "Hand Embroidered Cactus Pillow Cover",
+    rating: Array(5).fill({ icon: <IoStarOutline /> }),
+    price: "129.00",
+    description:
+      "The pattern is hand embroidered & hand painted to give a dimension by me in my smoke free studio. The pillow cover has an envelope closure. Overlocked inner seams. Fabrics used for the pillow/cushion cover are linen and rayon blend and are all pre-washed before stitching (for shrinkage).",
+  },
+  {
+    id: 4,
+    img: "../images/kurti.png",
+    tag: "new",
+    btn: "Select Options",
+    category: "Womens",
+    title: "Shop",
+    short_description: "Elegant Kurtis",
+    rating: Array(5).fill({ icon: <IoStarOutline /> }),
+    price: "129.00",
+    description:
+      "Indulge in timeless elegance with our exquisite collection of Kurtis. Crafted with the finest fabrics and attention to detail, these pieces are perfect for any occasion. Elevate your wardrobe with effortless style. Shop now!",
+  },
+  {
+    id: 5,
+    img: "../images/handicraft.jpg",
+    tag: "new",
+    btn: "Select Options",
+    category: "Handicraft",
+    title: "Handicraft Art",
+    short_description: "Handcrafted Wooden Wall Art",
+    rating: Array(5).fill({ icon: <IoStarOutline /> }),
+    price: "89.00",
+    description:
+      "Add a touch of artisanal elegance to your home with our handcrafted wooden wall art. Each piece is carefully crafted by skilled artisans, offering unique designs to enhance your space. Perfect for any modern or rustic decor.",
+  },
+  {
+    id: 6,
+    img: "../images/menkurta.jpg",
+    tag: "new",
+    btn: "Select Options",
+    category: "Mens",
+    title: "Shop",
+    short_description: "Men's Traditional Kurta",
+    rating: Array(5).fill({ icon: <IoStarOutline /> }),
+    price: "59.00",
+    description:
+      "Embrace the timeless charm of traditional men's kurtas. Made from high-quality cotton fabric, these kurtas offer comfort and style for any occasion. Pair with your favorite trousers for a refined look.",
+  },
+  {
+    id: 7,
+    img: "../images/jeans.jpeg",
+    tag: "new",
+    btn: "Select Options",
+    category: "Mens",
+    title: "Shop",
+    short_description: "Classic Slim Fit Jeans",
+    rating: Array(5).fill({ icon: <IoStarOutline /> }),
+    price: "69.00",
+    description:
+      "Discover the perfect pair of slim fit jeans, combining comfort and style. Crafted with premium denim, these jeans are versatile enough for both casual and semi-formal occasions. A wardrobe essential.",
+  },
+  {
+    id: 8,
+    img: "../images/womenkurti.jpeg",
+    tag: "new",
+    btn: "Select Options",
+    category: "Womens",
+    title: "Shop",
+    short_description: "Floral Printed Kurti",
+    rating: Array(5).fill({ icon: <IoStarOutline /> }),
+    price: "79.00",
+    description:
+      "Enhance your elegance with this beautifully printed floral kurti. Made from soft cotton fabric, it's perfect for day-to-night wear. With a flattering cut and vibrant design, this kurti is a must-have in your collection.",
+  },
+  
+  {
+    id: 9,
+    img: "../images/ponds.jpg",
+    tag: "new",
+    btn: "Select Options",
+    category: "Cosmetics",
+    title: "Pond's Facewash",
+    short_description: "Pond's Pure Detox Facewash",
+    rating: Array(5).fill({ icon: <IoStarOutline /> }),
+    price: "19.00",
+    description:
+      "Refresh and rejuvenate your skin with Pond's Pure Detox Facewash. Infused with activated charcoal, this facewash deeply cleanses your skin, removing dirt and impurities for a fresh and radiant complexion.",
+  },
+  {
+    id: 10,
+    img: "../images/lipstick.png",
+    tag: "new",
+    btn: "Select Options",
+    category: "Cosmetics",
+    title: "L'Oréal Lipstick",
+    short_description: "L'Oréal Paris Color Riche Lipstick",
+    rating: Array(5).fill({ icon: <IoStarOutline /> }),
+    price: "25.00",
+    description:
+      "Add a pop of color to your lips with L'Oréal Paris Color Riche Lipstick. This rich, creamy lipstick provides long-lasting hydration and vibrant color, available in a variety of shades to suit every occasion.",
+  },
+  {
+    id: 11,
+    img: "../images/base.jpeg",
+    tag: "new",
+    btn: "Select Options",
+    category: "Cosmetics",
+    title: "Makeup Base",
+    short_description: "Flawless Makeup Base Primer",
+    rating: Array(5).fill({ icon: <IoStarOutline /> }),
+    price: "30.00",
+    description:
+      "Create a smooth canvas for your makeup with this flawless makeup base primer. Designed to minimize pores and smooth out your skin, it provides a perfect foundation for long-lasting makeup.",
+  },
+  {
+    id: 12,
+    img: "../images/eyeshades.jpeg",
+    tag: "new",
+    btn: "Select Options",
+    category: "Cosmetics",
+    title: "Eyeshadow Makeup",
+    short_description: "Vibrant Eyeshadow Palette",
+    rating: Array(5).fill({ icon: <IoStarOutline /> }),
+    price: "35.00",
+    description:
+      "Unleash your creativity with this vibrant eyeshadow palette. Featuring a mix of matte and shimmer shades, this palette allows you to create stunning looks for both day and night, perfect for any makeup enthusiast.",
+  }
+
+];

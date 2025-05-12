@@ -30,15 +30,18 @@ const CatagoryAd = () => {
         <div>
             <div class='flex justify-center items-center'
             ><h1 class='text-2xl mt-5 font-bold text-black'>Choose AD catagory</h1></div>
-            <ul className="w-full mx-auto min-h-screen flex items-center gap-10">
+            <ul className="flex flex-wrap justify-center items-center gap-3 px-4 py-2">
+
                 {catagorieslist.map((catagory) => {
 
                     return (
-                    <li className="bg-gradient-to-r from-blue-500 via-purple-500
-               to-pink-500 p-6 h-48 border border-black justify-around flex ml-6 text-2xl w-full mx-auto bg-white rounded-xl shadow-lg items-center justify-center text-white"
-               onClick={() => navigate(`/add-product/${catagory.name}/${catagory.id}`)}>
-                        <div >{catagory.name}</div>
-                    </li>)
+                        <div key={catagory.name} onClick={() => navigate(`/add-product/${catagory.name}/${catagory.id}`)} class="flex flex-col items-center justify-center p-4 rounded-lg bg-gray-100 shadow-md">
+                            <div class="w-48 h-48 rounded-full bg-white flex items-center justify-center mb-4">
+                                <img class="w-full h-full rounded-full bg-cover bg-center" src={catagory.image} />
+                            </div>
+                            <h2 class="text-xl font-semibold text-gray-800">{catagory.name}</h2>
+                        </div>
+                    )
                 })}
 
 

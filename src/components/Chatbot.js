@@ -1,98 +1,47 @@
 
-import React, { useState } from 'react';
-import '../index.css'; // Import the CSS file where the styles are defined
-import { chatbot } from "../data/Data"; // Import the chatbot data
-
-// Normalization function: lowercase and remove special characters
-const normalize = (text) =>
-  text.toLowerCase().replace(/[^a-z0-9\s]/gi, "").split(/\s+/);
-
-// Matching function to calculate the similarity score
-const calculateMatch = (inputWords, triggerWords) => {
-  const inputSet = new Set(inputWords);
-  const triggerSet = new Set(triggerWords);
-  const intersection = [...inputSet].filter(word => triggerSet.has(word));
-  return intersection.length / Math.max(triggerWords.length, 1); // Prevent division by zero
-};
-
-// Enhanced function to determine the best reply
-const getBestReply = (message) => {
-  const normalizedInput = normalize(message); // Normalize the user's input
-
-  let bestMatch = null;
-  let highestScore = 0;
-
-  for (const item of chatbot) {
-    const normalizedTrigger = normalize(item.trigger); // Normalize the stored trigger
-    const matchScore = calculateMatch(normalizedInput, normalizedTrigger);
-
-    if (matchScore > highestScore) {
-      bestMatch = item;
-      highestScore = matchScore;
-    }
-  }
-
-  // Set a threshold for relevant responses (e.g., 40%)
-  if (highestScore >= 0.4) {
-    return bestMatch.response;
-  }
-
-  // Default response if no relevant match is found
-  return "I'm sorry, I couldn't understand. Could you please provide more details?";
-};
+import React, { useState } from "react";
+import "../index.css";
 
 function Chatbot() {
-  const [userMessage, setUserMessage] = useState('');
-  const [chatbotReply, setChatbotReply] = useState('');
+  const [isMinimized, setIsMinimized] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
-  const handleInputChange = (e) => {
-    setUserMessage(e.target.value);
-  };
+  // Iframe URL for Chatbase chatbot (replace with your actual Chatbase URL)
+  const CHATBASE_IFRAME_URL = process.env.REACT_APP_CHATBASE_IFRAME_URL;
+  console.log(CHATBASE_IFRAME_URL);  // This will print the value of the environment variable
 
-  const handleSendMessage = () => {
-    if (!userMessage.trim()) return; // Skip empty input
 
-    // Get the chatbot's best reply
-    const botReply = getBestReply(userMessage);
-
-    // Update the chatbot's reply and clear the user input field
-    setChatbotReply(botReply);
-    setUserMessage('');
-  };
+  if (!isVisible) return null;
 
   return (
-    <div className="chatbot-container">
-      {/* Chatbot Header */}
-      <div className="chatbot-header">
-        Chatbot
+    <div className={`fixed bottom-5 right-5 w-80 md:w-96 z-50 ${isMinimized ? "h-12" : "h-auto"} shadow-2xl rounded-lg border border-gray-300 bg-white`}>
+      <div className="flex items-center justify-between p-3 bg-gray-100 rounded-t-lg">
+        <div className="font-semibold text-gray-800">Chat Support</div>
+        <div className="space-x-2">
+          <button onClick={() => setIsMinimized(!isMinimized)} className="text-gray-500 hover:text-gray-800">
+            {isMinimized ? "▲" : "▼"}
+          </button>
+          <button onClick={() => setIsVisible(false)} className="text-gray-500 hover:text-red-600">
+            ✖
+          </button>
+        </div>
       </div>
 
-      {/* Chatbot Messages */}
-      <div className="chatbot-messages">
-        {chatbotReply && (
-          <div className="chatbot-message bot">
-            {chatbotReply}
-          </div>
-        )}
-      </div>
-
-      {/* Chatbot Input Area */}
-      <div className="chatbot-input-area">
-        <input
-          type="text"
-          value={userMessage}
-          onChange={handleInputChange}
-          placeholder="Ask me a question"
-          className="chatbot-input"
-        />
-        <button onClick={handleSendMessage} className="send-button">
-          Send
-        </button>
-      </div>
+      {/* If not minimized, show the iframe */}
+      {!isMinimized && (
+        <div className="h-[400px] w-full">
+          <iframe
+            src={CHATBASE_IFRAME_URL}
+            width="100%"
+            height="100%"
+            frameBorder="0"
+            title="Chatbase Chatbot"
+            className="rounded-b-lg"
+          />
+        </div>
+      )}
     </div>
   );
 }
 
 export default Chatbot;
-
-

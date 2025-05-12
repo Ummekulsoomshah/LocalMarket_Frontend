@@ -6,7 +6,7 @@ import Contact from "./Contact";
 import NotFoundPage from "./NotFoundPage";
 import Header from "./../components/Header";
 import Footer from "./../components/Footer";
-import Login from "./Login";
+import SignupLogin from "./SignupLogin";
+import Checkout from "./Checkout";
 
-
-export { Home, Shop, Cart, Header, Footer, Contact, NotFoundPage, Login };
+export { Home, Shop, Cart, Header, Footer, Contact, NotFoundPage, SignupLogin, Checkout };
