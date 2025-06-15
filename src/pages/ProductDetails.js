@@ -1,19 +1,21 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const ProductDetails = () => {
     const { prodId } = useParams();
     const {categId}=useParams()
     const [product, setProduct] = useState(null)
+    const [similarProducts, setSimilarProducts] = useState([])
     useEffect(() => {
         const fetchProduct = async () => {
             try {
                 const response = await axios.get(`http://localhost:3000/getProductDetails/${prodId}`)
                 if (response.status === 200) {
                     console.log('response', response.data)
-                    await setProduct(response.data)
+                    await setProduct(response.data.details)
+                    await setSimilarProducts(response.data.similarProducts)
                     console.log('poduct', product)
                 } else {
                     console.log("Error fetching product details")
@@ -70,7 +72,8 @@ const ProductDetails = () => {
         )
     }
     return (
-        
+        <>
+
         <div class="flex md:flex-row gap-8 p-6 bg-white rounded-lg shadow-md max-w-6xl mx-auto">
             <div class="flex-shrink-0 w-1/2 md:w-1/2">
                 <img src={product.image} alt="Fullway Tires HP108" class="rounded-lg w-full object-contain" />
@@ -111,6 +114,27 @@ const ProductDetails = () => {
                 </button>
             </div>
         </div>
+        <div class="max-w-6xl mx-auto align-center mt-8">
+            <h2 class="text-xl font-semibold mb-4">Similar Products</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {similarProducts.map((item, index) => (
+                    
+                    <div key={index} class="bg-white rounded-lg shadow-md p-4">
+                        <Link to={`/ProductDetails/${categId}/${item.product.id}`}>
+                        <img src={item.product.image} alt={item.product.title} class="w-full h-48 object-cover rounded-t-lg mb-4" />
+                        </Link>
+                        <h3 class="text-lg font-semibold">{item.product.title}</h3>
+                        <p class="text-gray-600">PKR. {item.product.price}</p>
+                        <button onClick={() => handleCart(item.product.id)} class="mt-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+                            Add to Cart
+                        </button>
+                    </div>
+                ))}
+            </div>
+        </div>
+
+
+        </>
 
     )
 }
